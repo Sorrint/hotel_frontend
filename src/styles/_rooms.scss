@@ -1,0 +1,166 @@
+.room-card {
+    margin: 20px 0;
+    width: 560px;
+    height: 670px;
+    border: 1px solid black;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+    text-align: center;
+    overflow: hidden;
+
+    font-family: "Orchidea", serif;
+
+    &__title {
+        padding: 20px 0;
+
+        display: block;
+
+        color: blue;
+        font-size: 20px;
+    }
+    &__image {
+        width: 100%;
+        height: auto;
+    }
+
+    &__price {
+        padding: 20px 0;
+
+        color: blue;
+        font-size: 24px;
+    }
+    &__guestsWrapper {
+        width: 100%;
+        padding: 10px 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    &__numberOfGuests {
+        margin-right: 10px;
+        padding: 5px 6px;
+        cursor: pointer;
+        border: 1px solid black;
+        border-radius: 10%;
+
+        &_active {
+            margin-right: 10px;
+            padding: 5px 6px;
+            cursor: pointer;
+            background-color: #3ac4fa;
+            color: white;
+            border-radius: 10%;
+            border: 2px solid rgb(41, 41, 235);
+        }
+    }
+
+    &__info {
+        padding: 10px 0;
+    }
+    &__button {
+        margin: 10px 0;
+        padding: 10px 10px;
+        border-radius: 5%;
+
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        background-color: #3ac4fa;
+    }
+}
+
+.room-description {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+
+    font-size: 24px;
+    line-height: 50px;
+    font-weight: bold;
+
+    &__content-left {
+        width: 80%;
+    }
+
+    &__content-right {
+        position: relative;
+        flex-grow: 1;
+        text-align: center;
+    }
+
+    &__image {
+        width: 100%;
+        height: auto;
+    }
+
+    &__properties {
+        font-weight: bold;
+    }
+
+    &__property,
+    &__amenity {
+        display: flex;
+        flex-direction: row;
+    }
+    &__text {
+        font-weight: normal;
+    }
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        margin-right: 15px;
+        height: 50px;
+    }
+
+    &__amenities {
+        font-weight: bold;
+    }
+    &__amenity {
+        font-weight: normal;
+    }
+
+    &__about {
+        font-weight: normal;
+    }
+
+    &__numberOfGuests {
+        min-width: 100px;
+
+        font-size: 18px;
+        margin-right: 10px;
+        padding: 5px 6px;
+        cursor: pointer;
+        border: 1px solid black;
+        border-radius: 10%;
+
+        &_active {
+            min-width: 100px;
+
+            font-size: 18px;
+            margin-right: 10px;
+            padding: 5px 6px;
+            cursor: pointer;
+            background-color: #3ac4fa;
+            color: white;
+            border-radius: 10%;
+            border: 2px solid rgb(41, 41, 235);
+        }
+    }
+
+    &__price {
+        font-weight: bold;
+    }
+}
+@media screen and (max-width: 1130px) {
+    .room-card {
+        width: 100%;
+        height: 100%;
+        margin: 10px 20px;
+    }
+}

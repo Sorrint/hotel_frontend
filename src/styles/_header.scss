@@ -1,0 +1,69 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    &__top-bar {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        margin: 0 auto;
+        height: 56px;
+        background-color: #3ac4fa;
+        font-size: 20px;
+        color: white;
+    }
+
+    &__content {
+        width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__contacts {
+        display: flex;
+        flex-direction: row;
+        flex: 1 1 auto;
+        width: 100%;
+    }
+
+    &__mail {
+        margin-left: 20px;
+    }
+
+    &__navigation {
+        max-width: 1200px;
+        display: flex;
+        justify-content: right;
+        align-items: center;
+        width: 100%;
+        height: 100px;
+    }
+
+    &__links {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &__logo {
+        width: 100%;
+        height: 80px;
+        background-image: url("./img/logo.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    &__link {
+        font-size: 14px;
+        margin: 20px 16px;
+        text-decoration: none;
+        font-weight: 600;
+        color: black;
+        white-space: nowrap;
+    }
+}

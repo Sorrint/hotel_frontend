@@ -1,0 +1,16 @@
+.booking-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.booking-card {
+    // width: 350px;
+    display: grid;
+    margin: 10px;
+
+    border: 1px solid grey;
+    &__image {
+        width: 100%;
+        height: auto;
+    }
+}
