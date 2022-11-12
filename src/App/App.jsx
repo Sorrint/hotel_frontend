@@ -1,9 +1,6 @@
 // import Content from './layouts/content';
 import React from 'react';
-import Footer from './components/common/footer';
-import Header from './components/common/header';
 import '../style.css';
-import Banner from './components/common/banner/banner';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import routes from './routes';
 

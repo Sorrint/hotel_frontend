@@ -76,3 +76,23 @@
     height: 100%;
     opacity: 100%;
 }
+
+.calendar {
+    padding: 10px;
+    position: absolute;
+    border-radius: 5px;
+    border: 1px solid #3ac4fa;
+    display: flex;
+    border-radius: 1px solid black;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 50px;
+    background-color: #fff;
+    opacity: 100%;
+}
+
+input,
+button {
+    font-family: "Orchidea", sans-serif;
+}

@@ -100,15 +100,28 @@
 
     &__properties {
         font-weight: bold;
+
+        &_column {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        &_row {
+            display: grid;
+            grid-auto-flow: column;
+        }
     }
 
     &__property,
     &__amenity {
         display: flex;
         flex-direction: row;
+        align-items: center;
     }
     &__text {
         font-weight: normal;
+        text-align: center;
     }
 
     &__icon {

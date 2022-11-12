@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
 
-import DatePicker from 'react-datepicker';
+import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import ru from 'date-fns/locale/ru';
+import { useEffect } from 'react';
+registerLocale('ru', ru);
 
-const Calendar = () => {
-    // const [dateRange, setDateRange] = useState([null, null]);
-    // const [startDate, endDate] = dateRange;
-    // return (
-    //     <DatePicker
-    //         selectsRange={true}
-    //         startDate={startDate}
-    //         endDate={endDate}
-    //         onChange={(update) => {
-    //             setDateRange(update);
-    //         }}
-    //         isClearable={true}
-    //     />
-    // );
-    const [startDate, setStartDate] = useState(new Date());
+const Calendar = ({ bookingRange, onChange }) => {
+    const [dateRange, setDateRange] = useState([null, null]);
+    const [startDate, endDate] = dateRange;
+    useEffect(() => {
+        if (bookingRange) {
+            const [inDate, outDate] = bookingRange;
+            setDateRange([inDate, outDate]);
+        }
+    }, [bookingRange]);
+
+    // useEffect(() => {
+    //     return onChange({ bookingRange, value: [startDate, endDate] });
+    // }, [startDate, endDate]);
     return (
         <DatePicker
             renderCustomHeader={({ monthDate, customHeaderCount, decreaseMonth, increaseMonth }) => (
@@ -35,7 +36,7 @@ const Calendar = () => {
                         </span>
                     </button>
                     <span className="react-datepicker__current-month">
-                        {monthDate.toLocaleString('en-US', {
+                        {monthDate.toLocaleString('ru', {
                             month: 'long',
                             year: 'numeric'
                         })}
@@ -53,8 +54,18 @@ const Calendar = () => {
                 </div>
             )}
             selected={startDate}
-            onChange={(date) => setStartDate(date)}
             monthsShown={2}
+            selectsRange={true}
+            startDate={startDate}
+            endDate={endDate}
+            onChange={(update) => {
+                setDateRange(update);
+            }}
+            onCalendarClose={() => {
+                onChange({ name: 'bookingRange', value: dateRange });
+            }}
+            dateFormat="P"
+            locale="ru"
         />
     );
 };
