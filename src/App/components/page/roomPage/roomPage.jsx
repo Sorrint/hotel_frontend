@@ -5,15 +5,44 @@ import Header from '../../common/header';
 import RoomAmenities from '../../common/room/roomAmenities';
 import RoomInfo from '../../common/room/roomInfo';
 import RoomProperties from '../../common/room/roomProperties';
+import { addTextToProperties } from '../../../utils/utils';
 const RoomPage = ({ id, list, icons }) => {
     const [room, setRoom] = useState();
+    const [selectedProprerties, setSelectedProperties] = useState();
+
     useEffect(() => {
         if (list) {
             const currentRoom = list.find((item) => item._id.toString() === id);
             setRoom(currentRoom);
         }
     }, [id, list]);
-    if (room && icons) {
+
+    const displayProperties = ['area', 'persons', 'countOfRooms'];
+    function getOverview(name, value) {
+        switch (name) {
+            case 'area':
+                return (
+                    <>
+                        {`Площадь номера ${value} м`}
+                        <sup>2</sup>
+                    </>
+                );
+            case 'persons':
+                return `${value} спальных места`;
+            case 'countOfRooms':
+                return `${value} комн.`;
+            default:
+                return value;
+        }
+    }
+    useEffect(() => {
+        if (room) {
+            setSelectedProperties(addTextToProperties(room.properties, displayProperties, getOverview));
+        }
+        console.log(room);
+    }, [room]);
+
+    if (room && icons && selectedProprerties) {
         return (
             <>
                 <Header />
@@ -22,7 +51,7 @@ const RoomPage = ({ id, list, icons }) => {
                     <div className="content">
                         <div className="room-description">
                             <div className="room-description__content-left">
-                                <RoomProperties icons={icons} properties={room.properties} text="Описание" />
+                                <RoomProperties icons={icons} properties={selectedProprerties} text="Описание" />
                                 <RoomAmenities icons={icons} amenities={room.amenities} text="Оснащение номера" />
                                 <RoomAmenities icons={icons} amenities={room.otherAmenities} text="Прочее" />
                             </div>

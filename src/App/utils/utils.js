@@ -27,3 +27,14 @@ export function getIconContent(icons, id) {
     const searchIcon = icons.find((icon) => icon._id === id);
     return searchIcon ? parse(`${searchIcon.content}`) : false;
 }
+
+export function addTextToProperties(allProperties, displayProperties, getText) {
+    const selectedProprerties = allProperties.reduce((returnedProperties, property) => {
+        if (displayProperties.find((p) => p === property.name)) {
+            property.text = getText(property.name, property.value);
+            returnedProperties.push(property);
+        }
+        return returnedProperties;
+    }, []);
+    return selectedProprerties;
+}

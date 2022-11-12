@@ -1,12 +1,12 @@
 import Rooms from './layouts/rooms';
 import MainPage from './components/page/mainPage';
 import Login from './layouts/login';
-import AdminPanel from './components/page/adminPanel';
 import About from './components/page/aboutPage/about';
 import Services from './components/page/servicesPage/services';
 import News from './components/page/newsPage/news';
 import Contacts from './components/page/contactsPage/contacts';
-import BookingRoom from './components/page/bookingRoom';
+import AdminPanel from './components/common/adminPanel';
+import BookingRoom from './components/common/booking/bookingRoom';
 
 const routes = [
     { path: '/rooms/:booking?/:roomId?', name: 'Rooms', component: Rooms },
