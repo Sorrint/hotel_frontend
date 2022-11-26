@@ -7,16 +7,11 @@ import RoomAmenities from '../../common/room/roomAmenities';
 import RoomInfo from '../../common/room/roomInfo';
 import RoomProperties from '../../common/room/roomProperties';
 import { addTextToProperties } from '../../../utils/utils';
-const RoomPage = ({ id, list, icons }) => {
-    const [room, setRoom] = useState();
+import { useSelector } from 'react-redux';
+import { getRoomById } from '../../../store/rooms';
+const RoomPage = ({ id, icons }) => {
+    const room = useSelector(getRoomById(id));
     const [selectedProprerties, setSelectedProperties] = useState();
-
-    useEffect(() => {
-        if (list) {
-            const currentRoom = list.find((item) => item._id.toString() === id);
-            setRoom(currentRoom);
-        }
-    }, [id, list]);
 
     const displayProperties = ['area', 'persons', 'countOfRooms'];
     function getOverview(name, value) {
@@ -36,14 +31,14 @@ const RoomPage = ({ id, list, icons }) => {
                 return value;
         }
     }
+
     useEffect(() => {
         if (room) {
             setSelectedProperties(addTextToProperties(room.properties, displayProperties, getOverview));
         }
-        console.log(room);
     }, [room]);
 
-    if (room && icons && selectedProprerties) {
+    if (room && icons) {
         return (
             <>
                 <Header />
