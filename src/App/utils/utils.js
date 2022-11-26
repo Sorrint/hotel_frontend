@@ -38,3 +38,25 @@ export function addTextToProperties(allProperties, displayProperties, getText) {
     }, []);
     return selectedProprerties;
 }
+
+export async function getData(service) {
+    try {
+        const content = await service.fetchAll();
+        return content;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const getToday = () => {
+    const date = new Date();
+    const today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+    return today;
+};
+
+export const getTomorrow = () => {
+    const today = new Date();
+    const tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
+    return tomorrow;
+};

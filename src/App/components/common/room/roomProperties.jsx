@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { getIconContent } from '../../../utils/utils';
 const RoomProperties = ({ icons, properties, text, direction = 'column' }) => {
     return (
@@ -14,4 +15,10 @@ const RoomProperties = ({ icons, properties, text, direction = 'column' }) => {
     );
 };
 
+RoomProperties.propTypes = {
+    icons: PropTypes.array,
+    properties: PropTypes.array,
+    text: PropTypes.string,
+    direction: PropTypes.string
+};
 export default RoomProperties;

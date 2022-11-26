@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { getIconContent, getIconText } from '../../../utils/utils';
 const RoomAmenities = ({ icons, amenities, text }) => {
     function getIcon(amenity) {
@@ -34,4 +35,9 @@ const RoomAmenities = ({ icons, amenities, text }) => {
     );
 };
 
+RoomAmenities.propTypes = {
+    icons: PropTypes.array,
+    amenities: PropTypes.array,
+    text: PropTypes.string
+};
 export default RoomAmenities;

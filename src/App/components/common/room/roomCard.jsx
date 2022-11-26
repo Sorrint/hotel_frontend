@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import RoomInfo from './roomInfo';
 
@@ -16,6 +17,12 @@ const RoomCard = ({ _id: id, image, title, ...rest }) => {
             </Link>
         </div>
     );
+};
+
+RoomCard.propTypes = {
+    _id: PropTypes.string,
+    image: PropTypes.string,
+    title: PropTypes.string
 };
 
 export default RoomCard;

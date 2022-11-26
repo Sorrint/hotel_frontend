@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 const BannerHandle = ({ name, text }) => {
     return (
         <>
@@ -15,4 +16,8 @@ const BannerHandle = ({ name, text }) => {
     );
 };
 
+BannerHandle.propTypes = {
+    name: PropTypes.string,
+    text: PropTypes.string
+};
 export default BannerHandle;

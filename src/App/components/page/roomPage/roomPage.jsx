@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import Banner from '../../common/banner/banner';
 import Footer from '../../common/footer';
 import Header from '../../common/header';
@@ -70,6 +71,12 @@ const RoomPage = ({ id, list, icons }) => {
             </>
         );
     }
+};
+
+RoomPage.propTypes = {
+    id: PropTypes.string,
+    list: PropTypes.array,
+    icons: PropTypes.array
 };
 
 export default RoomPage;
