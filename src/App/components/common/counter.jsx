@@ -1,6 +1,6 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+
 const Counter = ({ numberOfPersons, onChange, name, min = 0, max }) => {
     const [value, setValue] = useState(1);
     useEffect(() => {
@@ -33,4 +33,11 @@ const Counter = ({ numberOfPersons, onChange, name, min = 0, max }) => {
     );
 };
 
+Counter.propTypes = {
+    numberOfPersons: PropTypes.number,
+    onChange: PropTypes.func,
+    name: PropTypes.string,
+    min: PropTypes.number,
+    max: PropTypes.number
+};
 export default Counter;

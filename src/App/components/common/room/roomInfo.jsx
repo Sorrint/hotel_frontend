@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { renderGuests } from '../../../utils/utils';
 
 const RoomInfo = ({ classNamePrefix, title, area, countOfRooms, priceList, maxNumberOfPersons }) => {
@@ -37,4 +38,12 @@ const RoomInfo = ({ classNamePrefix, title, area, countOfRooms, priceList, maxNu
     );
 };
 
+RoomInfo.propTypes = {
+    classNamePrefix: PropTypes.string,
+    title: PropTypes.string,
+    area: PropTypes.number,
+    countOfRooms: PropTypes.number,
+    priceList: PropTypes.object,
+    maxNumberOfPersons: PropTypes.number
+};
 export default RoomInfo;

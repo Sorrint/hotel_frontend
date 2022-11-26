@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const CheckBoxField = ({ name, value, onChange, children, error }) => {
     const handleChange = () => {
@@ -26,4 +27,11 @@ const CheckBoxField = ({ name, value, onChange, children, error }) => {
     );
 };
 
+CheckBoxField.propTypes = {
+    name: PropTypes.string,
+    value: PropTypes.bool,
+    onChange: PropTypes.func,
+    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+    error: PropTypes.string
+};
 export default CheckBoxField;

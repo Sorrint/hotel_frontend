@@ -6,29 +6,17 @@ import roomsService from '../services/rooms.service';
 
 import BookingPage from '../components/page/bookingPage/bookingPage';
 import iconsService from '../services/icons.service';
+import roomTypesService from '../services/roomTypes.service';
+import { getData } from '../utils/utils';
 
 const Rooms = () => {
     const [rooms, setRooms] = useState();
     const [roomsTypes, setRoomsTypes] = useState();
     const [icons, setIcons] = useState();
 
-    async function getData(service) {
-        try {
-            const content = await service.fetchAll();
-            return content;
-        } catch (error) {
-            console.log(error);
-        }
-    }
     useEffect(() => {
-        getData(roomsService).then((data) => {
-            const types = new Set([]);
-            data.map((item) => {
-                types.add(item.type);
-            });
-            setRoomsTypes([...types]);
-            setRooms(data);
-        });
+        getData(roomsService).then((data) => setRooms(data));
+        getData(roomTypesService).then((data) => setRoomsTypes(data));
         getData(iconsService).then((data) => setIcons(data));
     }, []);
     const { booking, roomId } = useParams();

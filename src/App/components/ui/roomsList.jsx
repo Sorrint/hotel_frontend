@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Banner from '../common/banner/banner';
 import Footer from '../common/footer';
 import Header from '../common/header';
@@ -16,6 +17,7 @@ const RoomsList = ({ rooms, types }) => {
     const upperCase = (text) => {
         return text.toUpperCase();
     };
+
     if (types) {
         return (
             <>
@@ -30,19 +32,28 @@ const RoomsList = ({ rooms, types }) => {
                             </div>
                             {types &&
                                 types.map((type) => (
-                                    <div className="wrapper__button" key={type} onClick={() => handleTypeSelect(type)}>
-                                        {upperCase(type)}
+                                    <div
+                                        className="wrapper__button"
+                                        key={type._id}
+                                        onClick={() => handleTypeSelect(type._id)}
+                                    >
+                                        {upperCase(type.name)}
                                     </div>
                                 ))}
                         </div>
                     </div>
                     <div className="content">
-                        {filteredRooms && filteredRooms.map((room) => <RoomCard {...room} key={room.id} />)}
+                        {filteredRooms && filteredRooms.map((room) => <RoomCard {...room} key={room._id} />)}
                     </div>
                 </div>
                 <Footer />
             </>
         );
     }
+};
+
+RoomsList.propTypes = {
+    rooms: PropTypes.array,
+    types: PropTypes.array
 };
 export default RoomsList;

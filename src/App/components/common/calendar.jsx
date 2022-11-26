@@ -1,24 +1,19 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import ru from 'date-fns/locale/ru';
-import { useEffect } from 'react';
 registerLocale('ru', ru);
 
-const Calendar = ({ bookingRange, onChange }) => {
+const Calendar = ({ bookingRange, onChange, setCountDays }) => {
     const [dateRange, setDateRange] = useState([null, null]);
     const [startDate, endDate] = dateRange;
-    useEffect(() => {
-        if (bookingRange) {
-            const [inDate, outDate] = bookingRange;
-            setDateRange([inDate, outDate]);
-        }
-    }, [bookingRange]);
+    const [inDate, outDate] = bookingRange;
 
-    // useEffect(() => {
-    //     return onChange({ bookingRange, value: [startDate, endDate] });
-    // }, [startDate, endDate]);
+    useEffect(() => {
+        setDateRange([inDate, outDate]);
+    }, [inDate, outDate]);
+
     return (
         <DatePicker
             renderCustomHeader={({ monthDate, customHeaderCount, decreaseMonth, increaseMonth }) => (
@@ -62,6 +57,7 @@ const Calendar = ({ bookingRange, onChange }) => {
                 setDateRange(update);
             }}
             onCalendarClose={() => {
+                onChange({ name: 'countDays', value: (endDate - startDate) / (1000 * 60 * 60 * 24) });
                 onChange({ name: 'bookingRange', value: dateRange });
             }}
             dateFormat="P"
@@ -70,4 +66,9 @@ const Calendar = ({ bookingRange, onChange }) => {
     );
 };
 
+Calendar.propTypes = {
+    bookingRange: PropTypes.array,
+    onChange: PropTypes.func,
+    setCountDays: PropTypes.func
+};
 export default Calendar;

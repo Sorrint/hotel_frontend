@@ -1,28 +1,23 @@
 import React from 'react';
-import SelectField from '../../../styles/selectField';
+import PropTypes from 'prop-types';
 import Calendar from './calendar';
 import CheckBoxField from './checkbox';
 import Counter from './counter';
-const BookingPanel = ({ onChange, data }) => {
-    const roomTypes = [
-        { value: 'all', label: 'Все' },
-        { value: 'luxe', label: 'Люкс' },
-        { value: 'comfort', label: 'Комфорт' },
-        { value: 'econom', label: 'Эконом' }
-    ];
+import SelectField from './selectField';
 
+const BookingPanel = ({ onChange, data, roomTypes, setCountDays }) => {
     const { bookingRange, viewOnLake, numberOfPersons } = data;
 
     return (
         <>
             <div className="booking-panel">
                 <div className="booking-panel__calendar">
-                    <Calendar bookingRange={bookingRange} onChange={onChange} />
+                    <Calendar bookingRange={bookingRange} onChange={onChange} setCountDays={setCountDays} />
                 </div>
-                <Counter name="numberOfPersons" numberOfPersons={numberOfPersons} onChange={onChange} min={1} max={7} />
+                <Counter name="numberOfPersons" numberOfPersons={numberOfPersons} onChange={onChange} min={1} max={6} />
                 <SelectField
                     name={'roomTypes'}
-                    // value={'Выберите класс номера'}
+                    // value={'all'}
                     options={roomTypes}
                     defaultOption={'Выберите класс номера'}
                     onChange={onChange}
@@ -35,4 +30,10 @@ const BookingPanel = ({ onChange, data }) => {
     );
 };
 
+BookingPanel.propTypes = {
+    onChange: PropTypes.func,
+    data: PropTypes.object,
+    roomTypes: PropTypes.array,
+    setCountDays: PropTypes.func
+};
 export default BookingPanel;
