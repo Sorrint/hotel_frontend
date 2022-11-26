@@ -31,8 +31,7 @@ export function getIconContent(icons, id) {
 export function addTextToProperties(allProperties, displayProperties, getText) {
     const selectedProprerties = allProperties.reduce((returnedProperties, property) => {
         if (displayProperties.find((p) => p === property.name)) {
-            property.text = getText(property.name, property.value);
-            returnedProperties.push(property);
+            returnedProperties.push({ ...property, text: getText(property.name, property.value) });
         }
         return returnedProperties;
     }, []);
