@@ -1,20 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import bannerService from '../../../services/banners.service';
+import { getBannerByLocation } from '../../../store/banner';
 
 const BannerByRoute = () => {
     const location = useLocation();
-    const [banner, setBanner] = useState(
-        bannerService.fetchAll().then((data) => {
-            data.find((banner) => banner.path === location.pathname);
-        })
-    );
+    const banner = useSelector(getBannerByLocation(location));
 
-    useEffect(() => {
-        bannerService.fetchAll().then((data) => {
-            setBanner(data.find((banner) => banner.path === location.pathname));
-        });
-    }, [location]);
     return (
         <>
             {banner &&

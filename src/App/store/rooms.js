@@ -16,8 +16,9 @@ const roomsSlice = createSlice({
             state.entities = action.payload;
             state.isLoading = false;
         },
-        roomsRequestFailed: (state) => {
-            // state.error;
+        roomsRequestFailed: (state, action) => {
+            state.error = action.payload;
+            state.entities = null;
             state.isLoading = false;
         }
     }
