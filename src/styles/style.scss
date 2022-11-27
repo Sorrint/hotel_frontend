@@ -144,10 +144,10 @@ body {
     stroke-miterlimit: 10;
 }
 
-@import "_header";
-@import "_banner";
-@import "_main";
-@import "_rooms";
-@import "_footer";
-@import "_booking";
+@import "../App/components/common/_header";
+@import "../App/components/common/banner/_banner";
+@import "../App/components/page/mainPage/_main";
+@import "../App/layouts/_rooms";
+@import "../App/components/common/_footer";
+@import "../App/components/page/bookingPage/_booking";
 @import "../App/components/page/loginPage/_loginPage";
