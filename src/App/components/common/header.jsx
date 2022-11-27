@@ -1,14 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import menuItemsService from '../../services/menuItem.service';
+import navBarLinks from '../../api/menuItems';
+import NavBar from './navBar';
 
 const Header = () => {
-    const [menuItems, setMenuItems] = useState();
-    useEffect(() => {
-        menuItemsService.fetchAll().then((data) => {
-            setMenuItems(data);
-        });
-    }, []);
     return (
         <div className="header">
             <div className="header__top-bar">
@@ -25,14 +20,7 @@ const Header = () => {
             </div>
             <div className="header__navigation">
                 <div className="header__logo"></div>
-                <div className="header__links">
-                    {menuItems &&
-                        menuItems.map((item) => (
-                            <Link to={item.path} className="header__link" key={item._id}>
-                                {item.text.toUpperCase()}
-                            </Link>
-                        ))}
-                </div>
+                <NavBar name="header" itemsList={[...navBarLinks]} />
             </div>
         </div>
     );

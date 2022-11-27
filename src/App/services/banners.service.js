@@ -3,7 +3,7 @@ import httpService from './http.service';
 const bannerEndPoint = 'banners/';
 
 const bannerService = {
-    fetchAll: async () => {
+    get: async () => {
         const { data } = await httpService.get(bannerEndPoint);
         return data;
     }
