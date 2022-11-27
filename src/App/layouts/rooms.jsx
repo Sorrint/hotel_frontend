@@ -1,10 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import RoomPage from '../components/page/roomPage/roomPage';
 import BookingPage from '../components/page/bookingPage/bookingPage';
-// import iconsService from '../services/icons.service';
-// import { getData } from '../utils/utils';
 import RoomsListPage from '../components/page/roomsListPage/roomsListPage';
 import { useSelector } from 'react-redux';
 import { getRooms } from '../store/rooms';
@@ -16,11 +14,6 @@ const Rooms = () => {
     const roomsTypes = useSelector(getRoomTypes());
     const icons = useSelector(getIcons());
 
-    // const [icons, setIcons] = useState();
-
-    useEffect(() => {
-        // getData(iconsService).then((data) => setIcons(data));
-    }, []);
     const { booking, roomId } = useParams();
 
     if (rooms && roomsTypes) {

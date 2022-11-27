@@ -13,7 +13,7 @@ const Header = () => {
                         <div className="header__mail">mail@hotel.ru</div>
                     </div>
                     <div className="header__media"></div>
-                    <Link to="/login/signIn">
+                    <Link to="/login">
                         <button className="header__login">ВОЙТИ/ЗАРЕГИСТРИРОВАТЬСЯ</button>
                     </Link>
                 </div>
