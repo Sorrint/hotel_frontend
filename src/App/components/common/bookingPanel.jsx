@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Calendar from './calendar';
-import CheckBoxField from './checkbox';
-import Counter from './counter';
-import SelectField from './selectField';
+import CheckBoxField from './form/checkbox';
+import SelectField from './form/selectField';
+import Calendar from './form/calendar';
+import Counter from './form/counter';
 
 const BookingPanel = ({ onChange, data, roomTypes, setCountDays }) => {
     const { bookingRange, viewOnLake, numberOfPersons } = data;

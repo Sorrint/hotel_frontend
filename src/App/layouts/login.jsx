@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import LoginForm from '../components/common/form/loginForm';
+import RegisterForm from '../components/common/form/registerForm';
 
 const Login = () => {
     const [formType, setFormType] = useState('login-form');
@@ -15,23 +17,8 @@ const Login = () => {
     return (
         <>
             <div className={formName(formType)}>
-                <div className="form-container sign-up-container">
-                    <form action="#">
-                        <h1>РЕГИСТРАЦИЯ</h1>
-                        <input type="text" placeholder="имя" />
-                        <input type="email" placeholder="Email" />
-                        <input type="password" placeholder="пароль" />
-                        <button>ЗАРЕГИСТРИРОВАТЬСЯ</button>
-                    </form>
-                </div>
-                <div className="form-container sign-in-container">
-                    <form action="#">
-                        <h1>ВХОД</h1>
-                        <input type="email" placeholder="Email" />
-                        <input type="password" placeholder="Password" />
-                        <button>ВОЙТИ</button>
-                    </form>
-                </div>
+                <LoginForm />
+                <RegisterForm />
                 <div className="overlay-container">
                     <div className="overlay">
                         <div className="overlay-panel overlay-left">

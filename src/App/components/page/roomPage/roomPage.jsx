@@ -9,7 +9,9 @@ import RoomProperties from '../../common/room/roomProperties';
 import { addTextToProperties } from '../../../utils/utils';
 import { useSelector } from 'react-redux';
 import { getRoomById } from '../../../store/rooms';
-const RoomPage = ({ id, icons }) => {
+import { getIcons } from '../../../store/icons';
+const RoomPage = ({ id }) => {
+    const icons = useSelector(getIcons());
     const room = useSelector(getRoomById(id));
     const [selectedProprerties, setSelectedProperties] = useState();
 

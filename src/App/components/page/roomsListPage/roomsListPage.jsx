@@ -4,8 +4,13 @@ import Banner from '../../common/banner/banner';
 import Footer from '../../common/footer';
 import Header from '../../common/header';
 import RoomCard from '../../common/room/roomCard';
+import { useSelector } from 'react-redux';
+import { getRooms } from '../../../store/rooms';
+import { getRoomTypes } from '../../../store/roomTypes';
 
-const RoomsListPage = ({ rooms, types }) => {
+const RoomsListPage = () => {
+    const rooms = useSelector(getRooms());
+    const types = useSelector(getRoomTypes());
     const [selectedType, setSelectedType] = useState();
     const handleTypeSelect = (type) => {
         setSelectedType(type);
