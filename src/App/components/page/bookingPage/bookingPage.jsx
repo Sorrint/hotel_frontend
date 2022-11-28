@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import roomTypesService from '../../../services/roomTypes.service';
-import { getData, getToday, getTomorrow } from '../../../utils/utils';
+import { getToday, getTomorrow } from '../../../utils/utils';
 import BookingRoom from '../../common/booking/bookingRoom';
 import BookingPanel from '../../common/bookingPanel';
 import Header from '../../common/header';
+import { useSelector } from 'react-redux';
+import { getRoomTypes } from '../../../store/roomTypes';
+import { getRooms } from '../../../store/rooms';
+import { getIcons } from '../../../store/icons';
 
 const initialData = {
     bookingRange: [getToday(), getTomorrow()],
@@ -13,15 +16,18 @@ const initialData = {
     roomTypes: 'all',
     countDays: 1
 };
-const allTypes = {
-    label: 'Все',
-    name: 'Все',
-    value: 'all'
-};
+// const allTypes = {
+//     label: 'Все',
+//     name: 'Все',
+//     value: 'all'
+// };
 
-const BookingPage = ({ rooms, icons }) => {
+const BookingPage = () => {
+    const rooms = useSelector(getRooms());
+    const icons = useSelector(getIcons());
+    const roomTypes = useSelector(getRoomTypes());
     const [data, setData] = useState();
-    const [roomTypes, setRoomTypes] = useState([allTypes]);
+    // const [roomTypes, setRoomTypes] = useState([allTypes]);
     const handleChange = (target) => {
         setData((prevState) => ({ ...prevState, [target.name]: target.value }));
     };
@@ -41,13 +47,12 @@ const BookingPage = ({ rooms, icons }) => {
 
     useEffect(() => {
         setData(initialData);
-        getData(roomTypesService).then((data) => {
-            const types = data.map((item) => {
-                return { ...item, label: item.name };
-            });
+        // getData(roomTypesService).then((data) => {
+        //     const types = data.map((item) => {
+        //         return { ...item, label: item.name };
+        //     });
 
-            setRoomTypes((prevState) => [...prevState, ...types]);
-        });
+        // setRoomTypes((prevState) => [...prevState, ...types]);
     }, []);
 
     const filterByType = (rooms, roomType) => {

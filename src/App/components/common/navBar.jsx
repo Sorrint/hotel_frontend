@@ -7,7 +7,7 @@ const NavBar = ({ name, itemsList }) => {
         <div className={`${name}__links`}>
             {itemsList &&
                 itemsList.map((item) => (
-                    <Link to={item.path} className="header__link" key={item._id}>
+                    <Link to={item.path} className="header__link" key={item.name}>
                         {item.text.toUpperCase()}
                     </Link>
                 ))}
