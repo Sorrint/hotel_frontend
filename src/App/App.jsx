@@ -2,6 +2,7 @@ import React from 'react';
 import '../style.css';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import routes from './routes';
+import UsersLoader from './components/ui/hoc/userLoader';
 
 const getRoutes = (routes) => {
     return routes.map((route, key) => {
@@ -12,10 +13,12 @@ const getRoutes = (routes) => {
 function App() {
     return (
         <>
-            <Switch>
-                {getRoutes(routes)}
-                <Redirect to="/" />
-            </Switch>
+            <UsersLoader>
+                <Switch>
+                    {getRoutes(routes)}
+                    <Redirect to="/" />
+                </Switch>
+            </UsersLoader>
         </>
     );
 }
