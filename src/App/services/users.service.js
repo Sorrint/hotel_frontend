@@ -1,7 +1,7 @@
 import httpService from './http.service';
 import localStorageService from './localStorage.service';
 
-const userEndPoint = 'user/';
+const userEndPoint = 'users/';
 
 const userService = {
     get: async () => {
