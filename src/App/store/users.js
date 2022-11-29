@@ -1,5 +1,8 @@
 import { createAction, createSlice } from '@reduxjs/toolkit';
+import authService from '../services/auth.service';
+import localStorageService from '../services/localStorage.service';
 import userService from '../services/users.service';
+import history from '../utils/history';
 
 const initialState = {
     error: null,
@@ -40,12 +43,6 @@ const userSlice = createSlice({
             state.auth = null;
             state.dataLoaded = null;
         },
-        userCreated: (state, action) => {
-            if (!Array.isArray(state.entities)) {
-                state.entities = [];
-            }
-            state.entities.push(action.payload);
-        },
         userUpdated: (state, action) => {
             const userIndex = state.entities.findIndex((user) => user._id === action.payload._id);
             state.entities[userIndex] = { ...action.payload };
@@ -66,8 +63,20 @@ const {
     userUpdated
 } = actions;
 
-export const signUp = () => async (dispatch) => {
-    dispatch(authRequested);
+const userCreateRequested = createAction('users/userCreateRequested');
+const createUserFailed = createAction('users/createUserFailed');
+
+export const signUp = (userData) => async (dispatch) => {
+    dispatch(authRequested());
+    try {
+        const data = await authService.register(userData);
+        localStorageService.setTokens(data);
+        dispatch(authRequestSuccess({ userId: data.userId }));
+        history.push('/');
+    } catch (error) {
+        dispatch(authRequestFailed(error.response.data.message));
+        // console.log(error.response.data.message);
+    }
 };
 
 export const loadUsersList = () => async (dispatch) => {
@@ -79,6 +88,7 @@ export const loadUsersList = () => async (dispatch) => {
         dispatch(usersRequestFailed());
     }
 };
+
 export const getIsLoggedIn = () => (state) => state.users.isLoggedIn;
 
 export default usersReducer;
