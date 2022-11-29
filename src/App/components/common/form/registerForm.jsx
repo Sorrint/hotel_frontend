@@ -1,9 +1,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { signUp } from '../../../store/users';
 import Avatar from './avatar';
 import RadioField from './radioField';
 import TextField from './textField';
 const RegisterForm = () => {
+    const dispatch = useDispatch();
     const { register, handleSubmit, setValue, control } = useForm();
     const gender = [
         { name: 'male', value: 'мужской' },
@@ -11,12 +14,7 @@ const RegisterForm = () => {
     ];
 
     const onSubmit = (data) => {
-        console.log(data);
-        // e.preventDefault();
-        // const isValid = validate();
-        // if (!isValid) return;
-        // const newData = { ...data, qualities: data.qualities.map((q) => q.value) };
-        // dispatch(signUp(newData));
+        dispatch(signUp(data));
     };
     return (
         <div className="form-container sign-up-container">
