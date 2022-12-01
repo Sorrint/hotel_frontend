@@ -1,9 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import navBarLinks from '../../api/menuItems';
-import NavBar from './navBar';
+import { getIsLoggedIn } from '../../store/users';
+import NavBar from '../ui/navBar';
+import NavProfile from '../ui/navProfile';
 
 const Header = () => {
+    const isLoggedIn = useSelector(getIsLoggedIn());
     return (
         <div className="header">
             <div className="header__top-bar">
@@ -13,9 +17,13 @@ const Header = () => {
                         <div className="header__mail">mail@hotel.ru</div>
                     </div>
                     <div className="header__media"></div>
-                    <Link to="/login">
-                        <button className="header__login">ВОЙТИ/ЗАРЕГИСТРИРОВАТЬСЯ</button>
-                    </Link>
+                    {isLoggedIn ? (
+                        <NavProfile />
+                    ) : (
+                        <Link to="/login">
+                            <button className="header__login">ВОЙТИ/ЗАРЕГИСТРИРОВАТЬСЯ</button>
+                        </Link>
+                    )}
                 </div>
             </div>
             <div className="header__navigation">

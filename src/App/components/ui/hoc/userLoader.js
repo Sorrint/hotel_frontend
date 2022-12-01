@@ -7,10 +7,10 @@ const UsersLoader = ({ children }) => {
     const dispatch = useDispatch();
     const isLoggedIn = useSelector(getIsLoggedIn());
     useEffect(() => {
-        if (!isLoggedIn) {
+        if (isLoggedIn) {
             dispatch(loadUsersList());
         }
-    }, []);
+    }, [isLoggedIn]);
     return children;
 };
 

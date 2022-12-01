@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const TextField = ({ label, type, name, error, placeholder, register }) => {
+const TextField = ({ label, type, name, error, placeholder, register, formName, autoComplete }) => {
     const [showPassword, setShowPassword] = useState(false);
-
     const getInputClasses = () => {
         return 'input-container__input' + (error ? ' is-invalid' : '');
     };
@@ -20,12 +19,12 @@ const TextField = ({ label, type, name, error, placeholder, register }) => {
             <div className="input-group has-validation">
                 <input
                     type={showPassword ? 'text' : type}
-                    id={name}
+                    id={name + ' ' + formName}
                     name={name}
                     className={getInputClasses()}
                     placeholder={placeholder}
-                    {...register(name)}
-                    autoComplete="off"
+                    {...register}
+                    autoComplete={autoComplete}
                 />
 
                 {type === 'password' && (
@@ -33,8 +32,8 @@ const TextField = ({ label, type, name, error, placeholder, register }) => {
                         <i className={'bi bi-eye' + (showPassword ? '-slash' : '')}></i>
                     </button>
                 )}
-                {error && <div className="invalid-feedback">{error}</div>}
             </div>
+            {error && <div className="invalid-feedback">{error}</div>}
         </div>
     );
 };
@@ -52,5 +51,8 @@ TextField.propTypes = {
     onChange: PropTypes.func,
     error: PropTypes.string,
     placeholder: PropTypes.string,
-    register: PropTypes.func
+    register: PropTypes.object,
+    formName: PropTypes.string,
+    required: PropTypes.bool,
+    autoComplete: PropTypes.string
 };
