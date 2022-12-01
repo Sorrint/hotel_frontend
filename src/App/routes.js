@@ -5,12 +5,15 @@ import Services from './components/page/servicesPage/services';
 import News from './components/page/newsPage/news';
 import Contacts from './components/page/contactsPage/contacts';
 import AdminPanel from './components/common/adminPanel';
-import BookingRoom from './components/common/booking/bookingRoom';
 import LoginPage from './components/page/loginPage/loginPage';
+import BookingRoom from './components/common/booking/bookingRoom';
+import LogOut from './layouts/logOut';
+// import LogOut from './layouts/logout';
 
 const routes = [
     { path: '/rooms/:booking?/:roomId?', name: 'Rooms', component: Rooms },
     { path: '/rooms/booking', name: 'BookingRoom', component: BookingRoom },
+    { path: '/logout', name: 'LogOut', component: LogOut },
     { path: '/login', name: 'Login', component: LoginPage },
     { path: '/adminPanel', name: 'AdminPanel', component: AdminPanel },
     { path: '/about', name: 'About', component: About },

@@ -1,0 +1,36 @@
+.dropdown {
+    cursor: pointer;
+    &__profile {
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+    }
+    &__name {
+        padding: 0 10px;
+    }
+    &__avatar {
+        border: 1px solid #1e11a9;
+        border-radius: 50%;
+        background: #f1f1f1;
+    }
+
+    &__menu {
+        display: none;
+        &_show {
+            display: block;
+            margin-top: 5px;
+
+            position: absolute;
+        }
+    }
+    &__item {
+        background-color: #ffffff;
+        padding: 10px 20px;
+        box-sizing: content-box;
+        border: 1px solid #3ac4fa;
+    }
+
+    &__item:hover {
+        background-color: #80d4f5;
+    }
+}

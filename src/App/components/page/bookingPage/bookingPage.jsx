@@ -41,9 +41,9 @@ const BookingPage = () => {
         setData((prevState) => ({ ...prevState, countDays: (endDate - startDate) / (1000 * 60 * 60 * 24) }));
     };
 
-    useEffect(() => {
-        console.log(data);
-    }, [data]);
+    // useEffect(() => {
+    //     console.log(data);
+    // }, [data]);
 
     useEffect(() => {
         setData(initialData);

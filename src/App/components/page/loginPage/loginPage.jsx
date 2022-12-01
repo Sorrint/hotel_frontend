@@ -28,14 +28,14 @@ const LoginPage = () => {
                                 <h1>Вход</h1>
                                 <p>Для тех, у кого есть аккаунт</p>
                                 <button className="overlay__button" id="signIn" onClick={showSignInForm}>
-                                    Login
+                                    Войти
                                 </button>
                             </div>
                             <div className="overlay-panel overlay-right">
                                 <h1>Регистрация</h1>
-                                <p>Если у вас еще нет аккаунта, то можете зарегистрироваться</p>
+                                <p>Если у вас еще нет аккаунта, то можете</p>
                                 <button className="overlay__button" id="signUp" onClick={showSignUpForm}>
-                                    Sign Up
+                                    Зарегистрироваться
                                 </button>
                             </div>
                         </div>

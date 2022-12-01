@@ -1,11 +1,15 @@
 .input-container {
     display: grid;
-    grid-template-columns: 2fr 5fr;
+    grid-template-columns: 2fr 6fr;
+    // grid-template-rows: auto;
+    grid-auto-flow: row dense;
+    grid-template-areas: "label input" "error error";
     align-items: center;
     width: 100%;
     margin: 8px 0;
 
     &__label {
+        grid-area: "label";
         font-size: 16px;
         word-wrap: normal;
     }
@@ -49,7 +53,6 @@
     }
     &__input {
         display: none;
-        // visibility: hidden;
     }
 }
 
@@ -75,8 +78,18 @@
     width: 100%;
     display: grid;
     grid-template-columns: 4fr auto;
+    grid-area: "input";
+
     align-items: center;
 }
 .form-control {
+    width: 100%;
+}
+
+.invalid-feedback {
+    font-size: 14px;
+    grid-area: "error";
+    grid-column-start: 2;
+    grid-column-end: 3;
     width: 100%;
 }

@@ -37,9 +37,10 @@ export const loadBannersList = () => async (dispatch) => {
     }
 };
 export const getBannerByLocation = (location) => (state) => {
-    console.log(state.banner.entities);
-    const banner = state.banner.entities.find((banner) => banner.path === location.pathname);
-    return banner;
+    if (state.banner.entities) {
+        const banner = state.banner.entities.find((banner) => banner.path === location.pathname);
+        return banner;
+    }
 };
 
 export const getBannersLoadingStatus = () => (state) => state.banner.isLoading;
