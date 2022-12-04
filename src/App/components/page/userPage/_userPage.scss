@@ -1,0 +1,36 @@
+.user-content {
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    align-content: center;
+}
+
+.user {
+    &__card {
+        display: flex;
+        font-size: 25px;
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex: 1 1 auto;
+    }
+
+    &__avatar {
+        height: 150px;
+        width: 150px;
+        border: 2px solid #1e11a9;
+        border-radius: 15px;
+    }
+
+    &__email,
+    &__sex,
+    &__username {
+        margin: 25px 0;
+    }
+}

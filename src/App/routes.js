@@ -8,7 +8,7 @@ import AdminPanel from './components/common/adminPanel';
 import LoginPage from './components/page/loginPage/loginPage';
 import BookingRoom from './components/common/booking/bookingRoom';
 import LogOut from './layouts/logOut';
-// import LogOut from './layouts/logout';
+import Users from './layouts/users';
 
 const routes = [
     { path: '/rooms/:booking?/:roomId?', name: 'Rooms', component: Rooms },
@@ -20,6 +20,7 @@ const routes = [
     { path: '/services', name: 'Services', component: Services },
     { path: '/news', name: 'News', component: News },
     { path: '/contacts', name: 'Contacts', component: Contacts },
+    { path: '/users/:userId?/:profile?', name: 'Users', component: Users },
     { path: '/', name: 'Main Page', component: MainPage, exact: true }
 ];
 

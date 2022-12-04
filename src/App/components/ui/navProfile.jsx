@@ -16,14 +16,18 @@ const NavProfile = () => {
                 <div className="dropdown__name">{currentUser.username}</div>
                 <img src={currentUser.avatar} className="dropdown__avatar" alt="" height="40" />
             </div>
-            <div className={'dropdown__menu' + (isOpen ? '_show' : '')}>
-                <div className="dropdown__item">
-                    <Link to={`/`}>Profile</Link>
+            {isOpen && (
+                <div className="dropdown__wrapper">
+                    <div className="dropdown__menu">
+                        <div className="dropdown__item">
+                            <Link to={`/users/${currentUser._id}/profile`}>Profile</Link>
+                        </div>
+                        <div className="dropdown__item">
+                            <Link to="/logout">Log out</Link>
+                        </div>
+                    </div>
                 </div>
-                <div className="dropdown__item">
-                    <Link to="/logout">Log out</Link>
-                </div>
-            </div>
+            )}
         </div>
     );
 };

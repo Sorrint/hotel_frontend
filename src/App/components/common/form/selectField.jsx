@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 const SelectField = ({ label, value, onChange, defaultOption, options, name, error }) => {
     const handleChange = ({ target }) => {
         onChange({ name: target.name, value: target.value });
@@ -21,7 +22,7 @@ const SelectField = ({ label, value, onChange, defaultOption, options, name, err
                 {optionsArray.length > 0 &&
                     optionsArray.map((option) => (
                         <option value={option.value} key={option.value}>
-                            {option.label}
+                            {option.name}
                         </option>
                     ))}
             </select>

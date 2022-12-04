@@ -12,9 +12,9 @@ const Rooms = () => {
     return (
         <>
             <AppLoader>
-                <div className="wrapper">
-                    {booking ? roomId ? <RoomPage id={roomId} /> : <BookingPage /> : <RoomsListPage />}
-                </div>
+                {/* <div className="wrapper"> */}
+                {booking ? roomId ? <RoomPage id={roomId} /> : <BookingPage /> : <RoomsListPage />}
+                {/* </div> */}
             </AppLoader>
         </>
     );

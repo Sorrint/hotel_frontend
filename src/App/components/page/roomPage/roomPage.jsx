@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Banner from '../../common/banner/banner';
 import Footer from '../../common/footer';
-import Header from '../../common/header';
+import Header from '../../common/header/header';
 import RoomAmenities from '../../common/room/roomAmenities';
 import RoomInfo from '../../common/room/roomInfo';
 import RoomProperties from '../../common/room/roomProperties';
@@ -45,8 +45,9 @@ const RoomPage = ({ id }) => {
             <Header />
             {room && icons && (
                 <>
-                    <Banner imgClassName={room.className} text={room.title} />
                     <div className="wrapper">
+                        <Banner imgClassName={room.className} text={room.title} />
+
                         <div className="content">
                             <div className="room-description">
                                 <div className="room-description__content-left">

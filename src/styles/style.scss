@@ -144,7 +144,7 @@ body {
     stroke-miterlimit: 10;
 }
 
-@import "../App/components/common/_header";
+@import "../App/components/common/header/_header";
 @import "../App/components/common/banner/_banner";
 @import "../App/components/page/mainPage/_main";
 @import "../App/layouts/_rooms";
@@ -153,3 +153,5 @@ body {
 @import "../App/components/page/loginPage/_loginPage";
 @import "../App/components/common/form/_form";
 @import "../App/components/ui/_navProfile";
+@import "../App/components/common/modal/_modal";
+@import "../App/components/page/userPage/_userPage";
