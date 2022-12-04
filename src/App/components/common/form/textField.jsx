@@ -47,12 +47,9 @@ TextField.propTypes = {
     label: PropTypes.string,
     type: PropTypes.string,
     name: PropTypes.string,
-    value: PropTypes.string,
-    onChange: PropTypes.func,
     error: PropTypes.string,
     placeholder: PropTypes.string,
     register: PropTypes.object,
     formName: PropTypes.string,
-    required: PropTypes.bool,
     autoComplete: PropTypes.string
 };

@@ -1,23 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-const Counter = ({ numberOfPersons, onChange, name, min = 0, max }) => {
-    const [value, setValue] = useState(1);
-    useEffect(() => {
-        setValue(numberOfPersons);
-    }, [numberOfPersons]);
-
+const Counter = ({ name, value, onChange, min = 0, max, step = 1 }) => {
     const onDecrement = () => {
         if (value >= min + 1) {
-            setValue((prevState) => prevState - 1);
-            onChange({ name, value: value - 1 });
+            onChange({ name, value: value - step });
         }
     };
 
     const onIncrement = () => {
         if (value < max) {
-            setValue((prevState) => +prevState + 1);
-            onChange({ name, value: value + 1 });
+            onChange({ name, value: value + step });
         }
     };
     return (
@@ -25,7 +18,7 @@ const Counter = ({ numberOfPersons, onChange, name, min = 0, max }) => {
             <div className="counter__decrement" onClick={onDecrement}>
                 -
             </div>
-            <div className="counter__number">{value}</div>
+            <input type="text" className="counter__number" value={value} readOnly />
             <div className="counter__increment" onClick={onIncrement}>
                 +
             </div>
@@ -34,10 +27,12 @@ const Counter = ({ numberOfPersons, onChange, name, min = 0, max }) => {
 };
 
 Counter.propTypes = {
-    numberOfPersons: PropTypes.number,
-    onChange: PropTypes.func,
     name: PropTypes.string,
+    value: PropTypes.number,
+    onChange: PropTypes.func,
     min: PropTypes.number,
-    max: PropTypes.number
+    max: PropTypes.number,
+    step: PropTypes.number,
+    register: PropTypes.object
 };
 export default Counter;

@@ -1,5 +1,6 @@
 .dropdown {
     cursor: pointer;
+
     &__profile {
         display: flex;
         align-items: center;
@@ -15,13 +16,10 @@
     }
 
     &__menu {
-        display: none;
-        &_show {
-            display: block;
-            margin-top: 5px;
+        display: block;
+        margin-top: 5px;
 
-            position: absolute;
-        }
+        position: absolute;
     }
     &__item {
         background-color: #ffffff;

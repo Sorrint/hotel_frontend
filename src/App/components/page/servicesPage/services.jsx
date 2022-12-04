@@ -1,6 +1,6 @@
 import React from 'react';
 import Footer from '../../common/footer';
-import Header from '../../common/header';
+import Header from '../../common/header/header';
 import Banner from '../../common/banner/banner';
 const Services = () => {
     return (

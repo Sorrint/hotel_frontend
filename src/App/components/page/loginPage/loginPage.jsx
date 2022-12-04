@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Footer from '../../common/footer';
 import LoginForm from '../../common/form/loginForm';
 import RegisterForm from '../../common/form/registerForm';
-import Header from '../../common/header';
+import Header from '../../common/header/header';
 
 const LoginPage = () => {
     const [formType, setFormType] = useState('login-form');

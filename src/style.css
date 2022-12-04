@@ -1417,10 +1417,6 @@ button:focus {
 }
 
 .dropdown__menu {
-  display: none;
-}
-
-.dropdown__menu_show {
   display: block;
   margin-top: 5px;
   position: absolute;
@@ -1436,4 +1432,104 @@ button:focus {
 
 .dropdown__item:hover {
   background-color: #80d4f5;
+}
+
+.modal__wrapper {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.4);
+  top: 0;
+  left: 0;
+  display: none;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.modal__wrapper.show {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal__content {
+  background-color: white;
+  height: 400px;
+  width: 900px;
+  border-radius: 12px;
+  padding: 20px;
+  -webkit-transform: scale(0.5);
+          transform: scale(0.5);
+  -webkit-transition: 0.4s all;
+  transition: 0.4s all;
+}
+
+.modal__wrapper.show {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.user-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+.user__card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 25px;
+}
+
+.user__info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+}
+
+.user__avatar {
+  height: 150px;
+  width: 150px;
+  border: 2px solid #1e11a9;
+  border-radius: 15px;
+}
+
+.user__email, .user__sex, .user__username {
+  margin: 25px 0;
 }

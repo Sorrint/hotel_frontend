@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Banner from '../../common/banner/banner';
 import Footer from '../../common/footer';
-import Header from '../../common/header';
+import Header from '../../common/header/header';
 import RoomCard from '../../common/room/roomCard';
 import { useSelector } from 'react-redux';
 import { getRooms } from '../../../store/rooms';

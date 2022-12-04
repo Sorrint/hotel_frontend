@@ -2,7 +2,7 @@ import React from 'react';
 import { addTextToProperties } from '../../../utils/utils';
 import RoomProperties from '../room/roomProperties';
 import PropTypes from 'prop-types';
-const BookingRoom = ({ name, image, title, icons, properties, priceList, numberOfPersons, dateRange }) => {
+const BookingRoom = ({ _id, image, title, icons, properties, priceList, numberOfPersons, dateRange, onChange }) => {
     const displayProperties = ['area', 'persons', 'countOfRooms'];
     const getPlaceholders = (propName, value) => {
         switch (propName) {
@@ -24,6 +24,11 @@ const BookingRoom = ({ name, image, title, icons, properties, priceList, numberO
         }
         return priceList[2] * dateRange;
     };
+    const price = getPrice(numberOfPersons, dateRange);
+    const chooseNumber = () => {
+        onChange({ name: 'price', value: price });
+        onChange({ name: 'choosenNumber', value: _id });
+    };
 
     if (selectedProprerties) {
         return (
@@ -36,10 +41,12 @@ const BookingRoom = ({ name, image, title, icons, properties, priceList, numberO
                     )}
                     <div className="booking-card__panel">
                         <div className="booking-card__price">
-                            <div className="booking-card__cost">{getPrice(numberOfPersons, dateRange)} ₽</div>
+                            <div className="booking-card__cost">{price} ₽</div>
                             <div className="booking-card__info">{`${dateRange} ночь / ${numberOfPersons} гостя`}</div>
                         </div>
-                        <button className="booking-card__button">Выбрать</button>
+                        <button className="booking-card__button" onClick={chooseNumber}>
+                            Выбрать
+                        </button>
                     </div>
                 </div>
             </div>
@@ -48,13 +55,14 @@ const BookingRoom = ({ name, image, title, icons, properties, priceList, numberO
 };
 
 BookingRoom.propTypes = {
-    name: PropTypes.string,
     image: PropTypes.string,
     title: PropTypes.string,
     icons: PropTypes.array,
     properties: PropTypes.array,
     priceList: PropTypes.object,
     numberOfPersons: PropTypes.number,
-    dateRange: PropTypes.number
+    dateRange: PropTypes.number,
+    onChange: PropTypes.func,
+    _id: PropTypes.string
 };
 export default BookingRoom;
