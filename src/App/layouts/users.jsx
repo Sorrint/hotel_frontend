@@ -1,13 +1,32 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
-import UserPage from '../components/page/userPage';
+import { Switch } from 'react-router-dom/cjs/react-router-dom';
+import { getRoutes } from '../App';
+import UserPage from '../components/page/userPage/userPage';
 import AppLoader from '../components/ui/hoc/appLoader';
+import { userRoutes } from '../routes';
+import { getCurrentUserId } from '../store/users';
 
 const Users = () => {
-    const { userId, profile } = useParams();
+    const { userId } = useParams();
+    const currentUserId = useSelector(getCurrentUserId());
+    const userPath = `/users/${currentUserId}`;
+
+    const changedRoutes = userRoutes.map((route) => {
+        route.path = userPath + route.pathname;
+        return route;
+    });
+
     return (
         <AppLoader>
-            {userId ? profile ? <UserPage /> : <Redirect to="/userId/profile" /> : <Redirect to="/" />}
+            <UserPage>
+                <Switch>
+                    {currentUserId && getRoutes(changedRoutes)}
+                    {currentUserId !== userId && <Redirect to={`${userPath}/profile`} />}
+                    <Redirect to={`${userPath}/profile`} />
+                </Switch>
+            </UserPage>
         </AppLoader>
     );
 };

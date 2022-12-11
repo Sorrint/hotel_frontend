@@ -3,6 +3,7 @@ import authService from '../services/auth.service';
 import localStorageService from '../services/localStorage.service';
 import userService from '../services/users.service';
 import history from '../utils/history';
+import { clearBookingsList } from './bookings';
 
 const initialState = localStorageService.getAccessToken()
     ? {
@@ -101,6 +102,7 @@ export const login =
 export const logOut = () => async (dispatch) => {
     localStorageService.removeAuthData();
     dispatch(userLoggedOut());
+    dispatch(clearBookingsList());
     history.push('/');
 };
 
@@ -119,6 +121,7 @@ export const getCurrentUserData = () => (state) => {
     return state.users.entities ? state.users.entities.find((u) => u._id === state.users.auth.userId) : null;
 };
 
+export const getCurrentUserId = () => (state) => state.users.auth.userId;
 export const getUserById = (userId) => (state) => {
     if (state.users.entities) {
         return state.users.entities.find((u) => u._id === userId);

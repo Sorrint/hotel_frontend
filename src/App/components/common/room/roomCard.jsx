@@ -12,7 +12,7 @@ const RoomCard = ({ _id: id, image, title, ...rest }) => {
                 <RoomInfo classNamePrefix="room-card" title={title} {...rest} />
             </div>
 
-            <Link to={`rooms/booking/${id}`} className="room-card__button">
+            <Link to={`rooms/${id}`} className="room-card__button">
                 ПОДРОБНЕЕ
             </Link>
         </div>
