@@ -6,13 +6,19 @@ import News from './components/page/newsPage/news';
 import Contacts from './components/page/contactsPage/contacts';
 import AdminPanel from './components/common/adminPanel';
 import LoginPage from './components/page/loginPage/loginPage';
-import BookingRoom from './components/common/booking/bookingRoom';
 import LogOut from './layouts/logOut';
 import Users from './layouts/users';
+import EditUserData from './components/ui/editUserData';
+import UserBookings from './components/ui/userBookings';
+import UserProfile from './components/ui/userProfile';
+import AllBookings from './components/ui/allBookings';
+import RoomsData from './components/ui/roomsData';
+import EditRoomData from './components/ui/editRoomData';
 
-const routes = [
-    { path: '/rooms/:booking?/:roomId?', name: 'Rooms', component: Rooms },
-    { path: '/rooms/booking', name: 'BookingRoom', component: BookingRoom },
+export const publicRoutes = [
+    { path: '/', name: 'Main Page', component: MainPage, exact: true },
+    { path: '/rooms/:roomId?', name: 'Rooms', component: Rooms },
+    { path: '/booking', name: 'Booking', component: Rooms, protected: true },
     { path: '/logout', name: 'LogOut', component: LogOut },
     { path: '/login', name: 'Login', component: LoginPage },
     { path: '/adminPanel', name: 'AdminPanel', component: AdminPanel },
@@ -20,8 +26,35 @@ const routes = [
     { path: '/services', name: 'Services', component: Services },
     { path: '/news', name: 'News', component: News },
     { path: '/contacts', name: 'Contacts', component: Contacts },
-    { path: '/users/:userId?/:profile?', name: 'Users', component: Users },
-    { path: '/', name: 'Main Page', component: MainPage, exact: true }
+    { path: '/users/:userId?/:route?', name: 'Users', component: Users, protected: true, exact: true }
 ];
 
-export default routes;
+export const userRoutes = [
+    { pathname: '/edit', name: 'edit', component: EditUserData },
+    { pathname: '/profile', name: 'profile', component: UserProfile },
+    { pathname: '/myBookings', name: 'userBookings', component: UserBookings },
+    {
+        pathname: '/allBookings',
+        name: 'bookingsList',
+        component: AllBookings,
+        protected: true,
+        condition: 'isAdmin',
+        redirect: '/profile'
+    },
+    {
+        pathname: '/roomsList',
+        name: 'roomsList',
+        component: RoomsData,
+        protected: true,
+        condition: 'isAdmin',
+        redirect: '/profile'
+    },
+    {
+        pathname: '/editRoom',
+        name: 'editRoom',
+        component: EditRoomData,
+        protected: true,
+        condition: 'isAdmin',
+        redirect: '/profile'
+    }
+];

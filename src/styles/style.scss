@@ -1,3 +1,10 @@
+$mainColor: #3ac4fa;
+$hoverColor: #8ac4fa;
+$borderColor: #1e11a9;
+$buttonColor: #c9e5fc;
+$deleteButtonColor: #f54545;
+$borderDeleteColor: #ff0000c9;
+
 @import "_nullstyle";
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
@@ -144,6 +151,35 @@ body {
     stroke-miterlimit: 10;
 }
 
+.delete-button {
+    background-color: #ffffff;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    color: $deleteButtonColor;
+    font-weight: bold;
+    border: 2px solid $borderDeleteColor;
+}
+
+.delete-button:hover {
+    animation-name: hover-delete-button;
+    animation-duration: 0.5s;
+    background-color: $deleteButtonColor;
+    box-shadow: 2px 2px 5px $borderDeleteColor;
+    color: #ffffff;
+}
+
+@keyframes hover-delete-button {
+    from {
+        background-color: #ffffff;
+    }
+    100% {
+        background-color: $deleteButtonColor;
+        // box-shadow: 2px 2px 5px $borderDeleteColor;
+        color: #ffffff;
+    }
+}
+
 @import "../App/components/common/header/_header";
 @import "../App/components/common/banner/_banner";
 @import "../App/components/page/mainPage/_main";
@@ -155,3 +191,5 @@ body {
 @import "../App/components/ui/_navProfile";
 @import "../App/components/common/modal/_modal";
 @import "../App/components/page/userPage/_userPage";
+@import "../App/components/ui/_sideBar";
+@import "../App/components/ui/_bookingInfo";

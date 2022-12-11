@@ -1,6 +1,6 @@
 import axios from 'axios';
 import configFile from '../config.json';
-// import authService from './auth.service';
+import authService from './auth.service';
 import localStorageService from './localStorage.service';
 
 const http = axios.create({
@@ -9,20 +9,16 @@ const http = axios.create({
 
 http.interceptors.request.use(
     async function (config) {
-        // При обновлении токена приложение виснет
-        // console.log(config.url);
-        // const expiresDate = localStorageService.getTokenExpiresDate();
-        // const refreshToken = localStorageService.getRefreshToken();
-        // console.log('expiresDate', expiresDate);
-        // console.log('refresh Token', refreshToken);
-        // if (refreshToken && expiresDate < Date.now()) {
-        //     const data = await authService.refresh();
-        //     localStorageService.setTokens(data);
-        // }
+        const expiresDate = localStorageService.getTokenExpiresDate();
+        const refreshToken = localStorageService.getRefreshToken();
+        if (refreshToken && expiresDate < Date.now()) {
+            const data = await authService.refresh();
+            localStorageService.setTokens(data);
+        }
 
         const accessToken = localStorageService.getAccessToken();
         if (accessToken) {
-            config.headers = { ...config.headers, authorization: `Bearer ${accessToken}` };
+            config.headers = { ...config.headers, Authorization: `Bearer ${accessToken}` };
         }
         return config;
     },

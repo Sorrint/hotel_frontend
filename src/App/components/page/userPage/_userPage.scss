@@ -1,10 +1,22 @@
-.user-content {
-    display: flex;
-    flex: 1 1 auto;
+.user-wrapper {
+    display: grid;
+    padding: 0 40px;
+    grid-template-areas: "sidebar" "content";
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr;
+
     justify-content: center;
-    align-items: center;
     height: 100%;
-    align-content: center;
+}
+
+.userpage-title {
+    font-size: 24px;
+    padding: 20px;
+    font-weight: bold;
+}
+
+.user-content {
+    grid-area: "content";
 }
 
 .user {

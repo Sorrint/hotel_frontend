@@ -6,6 +6,7 @@ import { getIsLoggedIn, loadUsersList } from '../../../store/users';
 const UsersLoader = ({ children }) => {
     const dispatch = useDispatch();
     const isLoggedIn = useSelector(getIsLoggedIn());
+
     useEffect(() => {
         if (isLoggedIn) {
             dispatch(loadUsersList());

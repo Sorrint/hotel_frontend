@@ -10,6 +10,7 @@ import { addTextToProperties } from '../../../utils/utils';
 import { useSelector } from 'react-redux';
 import { getRoomById } from '../../../store/rooms';
 import { getIcons } from '../../../store/icons';
+import { Link } from 'react-router-dom';
 const RoomPage = ({ id }) => {
     const icons = useSelector(getIcons());
     const room = useSelector(getRoomById(id));
@@ -65,7 +66,9 @@ const RoomPage = ({ id }) => {
                                             title={room.description}
                                         />
                                     </div>
-                                    <button className="booking__button">БРОНИРОВАТЬ</button>
+                                    <Link to="/booking" className="booking__button">
+                                        БРОНИРОВАТЬ
+                                    </Link>
                                 </div>
                             </div>
                         </div>

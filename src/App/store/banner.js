@@ -36,9 +36,9 @@ export const loadBannersList = () => async (dispatch) => {
         dispatch(bannerRequestFailed(error.message));
     }
 };
-export const getBannerByLocation = (location) => (state) => {
+export const getBannerByLocation = (pathname) => (state) => {
     if (state.banner.entities) {
-        const banner = state.banner.entities.find((banner) => banner.path === location.pathname);
+        const banner = state.banner.entities.find((banner) => banner.path === pathname);
         return banner;
     }
 };

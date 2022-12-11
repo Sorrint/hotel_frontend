@@ -4,13 +4,14 @@ import { getToday, getTomorrow } from '../../../utils/utils';
 import BookingRoom from '../../common/booking/bookingRoom';
 import BookingPanel from '../../common/bookingPanel';
 import Header from '../../common/header/header';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getRoomTypes } from '../../../store/roomTypes';
 import { getRooms } from '../../../store/rooms';
 import { getIcons } from '../../../store/icons';
 import { useForm } from 'react-hook-form';
 import Modal from '../../common/modal/modal';
 import { getCurrentUserData } from '../../../store/users';
+import { createBooking } from '../../../store/bookings';
 
 const initialData = {
     bookingRange: [getToday(), getTomorrow()],
@@ -38,11 +39,12 @@ const transformData = (data) => {
 };
 
 const BookingPage = () => {
+    const dispatch = useDispatch();
     const rooms = useSelector(getRooms());
     const icons = useSelector(getIcons());
     const currentUser = useSelector(getCurrentUserData());
     const typesFromDB = useSelector(getRoomTypes());
-    const roomTypes = [allTypes, ...typesFromDB];
+    const roomTypes = typesFromDB ? [allTypes, ...typesFromDB] : [allTypes];
     const [data, setData] = useState();
     const [active, setActive] = useState(false);
     const { register, handleSubmit, setValue, control, getValues } = useForm({
@@ -73,9 +75,8 @@ const BookingPage = () => {
         return rooms.filter((room) => room.maxNumberOfPersons >= persons);
     };
     const onSubmit = (data) => {
-        const createRequest = { ...transformData(data), user: currentUser._id };
-        console.log(createRequest);
-        // setActive(!active);
+        const createdRequest = { ...transformData(data), user: currentUser._id };
+        dispatch(createBooking(createdRequest));
     };
 
     if (data && rooms) {

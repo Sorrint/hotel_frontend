@@ -1,5 +1,5 @@
 import React from 'react';
-import navBarLinks from '../../../api/menuItems';
+import { navBarLinks } from '../../../api/menuItems';
 import NavBar from '../../ui/navBar';
 import HeaderTop from './headerTop';
 

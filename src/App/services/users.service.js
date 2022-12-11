@@ -9,7 +9,7 @@ const userService = {
         return data;
     },
     create: async (payload) => {
-        const { data } = await httpService.put(userEndPoint + payload._id, payload);
+        const { data } = await httpService.post(userEndPoint + payload._id, payload);
         return data;
     },
     getCurrentUser: async () => {

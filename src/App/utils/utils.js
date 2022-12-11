@@ -18,6 +18,24 @@ export const renderGuests = (number) => {
     }
 };
 
+export const renderNights = (number) => {
+    if (number % 100 >= 11 && number % 100 <= 20) {
+        return `${number} ночей`;
+    } else {
+        const lastDigit = number.toString().split('').pop();
+        switch (lastDigit) {
+            case '1':
+                return `${number} ночь`;
+            case '2':
+            case '3':
+            case '4':
+                return `${number} ночи`;
+            default:
+                return `${number} ночей`;
+        }
+    }
+};
+
 export function getIconText(icons, id) {
     const searchIcon = icons.find((icon) => icon._id === id);
     return searchIcon ? searchIcon.text : id;
@@ -58,4 +76,16 @@ export const getTomorrow = () => {
     const today = new Date();
     const tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
     return tomorrow;
+};
+
+export const transformDate = (string) => {
+    const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    };
+    const date = new Date(string);
+    const locale = date.toLocaleDateString('ru', options);
+    return locale;
 };

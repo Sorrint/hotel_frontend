@@ -7,24 +7,32 @@
   border: 0;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-:focus, :active {
+:focus,
+:active {
   outline: none;
 }
 
-a:focus, a:active {
+a:focus,
+a:active {
   outline: none;
 }
 
-nav, footer, header, aside {
+nav,
+footer,
+header,
+aside {
   display: block;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
   font-size: 100%;
@@ -35,7 +43,9 @@ html, body {
   -webkit-text-size-adjust: 100%;
 }
 
-input, button, textarea {
+input,
+button,
+textarea {
   font-family: none;
 }
 
@@ -52,8 +62,10 @@ button::-moz-focus-inner {
   border: 0;
 }
 
-a, a:visited {
+a,
+a:visited {
   text-decoration: none;
+  color: inherit;
 }
 
 ul li {
@@ -64,7 +76,12 @@ img {
   vertical-align: top;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-size: inherit;
   font-weight: 400;
 }
@@ -219,6 +236,47 @@ body {
   stroke-miterlimit: 10;
 }
 
+.delete-button {
+  background-color: #ffffff;
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  color: #f54545;
+  font-weight: bold;
+  border: 2px solid #ff0000c9;
+}
+
+.delete-button:hover {
+  -webkit-animation-name: hover-delete-button;
+          animation-name: hover-delete-button;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  background-color: #f54545;
+  -webkit-box-shadow: 2px 2px 5px #ff0000c9;
+          box-shadow: 2px 2px 5px #ff0000c9;
+  color: #ffffff;
+}
+
+@-webkit-keyframes hover-delete-button {
+  from {
+    background-color: #ffffff;
+  }
+  100% {
+    background-color: #f54545;
+    color: #ffffff;
+  }
+}
+
+@keyframes hover-delete-button {
+  from {
+    background-color: #ffffff;
+  }
+  100% {
+    background-color: #f54545;
+    color: #ffffff;
+  }
+}
+
 .header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -250,6 +308,8 @@ body {
   background-color: #3ac4fa;
   font-size: 20px;
   color: white;
+  -webkit-box-shadow: 10px 5px 5px #8ac4fa;
+          box-shadow: 10px 5px 5px #8ac4fa;
 }
 
 .header__content {
@@ -714,6 +774,7 @@ button {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  margin: 30px 0;
   font-size: 24px;
   line-height: 50px;
   font-weight: bold;
@@ -847,7 +908,6 @@ button {
   width: 100%;
   height: 100px;
   background-color: lightblue;
-  margin-top: 50px;
 }
 
 .booking-cards {
@@ -1479,22 +1539,29 @@ button:focus {
           transform: scale(1);
 }
 
-.user-content {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 auto;
-          flex: 1 1 auto;
+.user-wrapper {
+  display: -ms-grid;
+  display: grid;
+  padding: 0 40px;
+      grid-template-areas: "sidebar" "content";
+  -ms-grid-columns: 1fr 4fr;
+      grid-template-columns: 1fr 4fr;
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   height: 100%;
-  -ms-flex-line-pack: center;
-      align-content: center;
+}
+
+.userpage-title {
+  font-size: 24px;
+  padding: 20px;
+  font-weight: bold;
+}
+
+.user-content {
+  grid-area: "content";
 }
 
 .user__card {
@@ -1532,4 +1599,218 @@ button:focus {
 
 .user__email, .user__sex, .user__username {
   margin: 25px 0;
+}
+
+.sidebar {
+  grid-area: "sidebar";
+  border-left: 2px solid #3ac4fa;
+  border-right: 2px solid #3ac4fa;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-top: 10px;
+}
+
+.sidebar__icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.sidebar__item {
+  stroke: #000000;
+}
+
+.sidebar__item.active {
+  background-color: #3ac4fa;
+  color: #ffffff;
+  stroke: #ffffff;
+  fill: #ffffff;
+}
+
+.sidebar__text {
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+.sidebar__link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 20px 5px;
+  font-size: 16px;
+  stroke: inherit;
+  stroke-width: 1.5;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.sidebar__link:hover {
+  color: #ffffff;
+  -webkit-animation-name: hover-fill;
+          animation-name: hover-fill;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  background-color: #8ac4fa;
+  fill: #ffffff;
+  stroke: #ffffff;
+}
+
+@-webkit-keyframes hover-fill {
+  from {
+    background-color: #ffffff;
+    stroke: #000000;
+    color: #000000;
+  }
+  100% {
+    background-color: #8ac4fa;
+    fill: #ffffff;
+    color: #ffffff;
+    stroke: #ffffff;
+  }
+}
+
+@keyframes hover-fill {
+  from {
+    background-color: #ffffff;
+    stroke: #000000;
+    color: #000000;
+  }
+  100% {
+    background-color: #8ac4fa;
+    fill: #ffffff;
+    color: #ffffff;
+    stroke: #ffffff;
+  }
+}
+
+.booking-info {
+  margin: 0 20px;
+  padding: 20px 0 20px 40px;
+  border-bottom: 1px solid #1e11a9;
+  font-size: 20px;
+}
+
+.booking-info__button {
+  font-size: 20px;
+  margin-left: 15px;
+  height: 48px;
+  border: 2px solid #1e11a9;
+  padding: 10px;
+  width: 250px;
+  background-color: #c9e5fc;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.booking-info__button:hover {
+  -webkit-animation-name: hover-button;
+          animation-name: hover-button;
+  -webkit-animation-duration: 0.3s;
+          animation-duration: 0.3s;
+  background-color: #8ac4fa;
+  color: #ffffff;
+  -webkit-box-shadow: 2px 2px 5px #1e11a9;
+          box-shadow: 2px 2px 5px #1e11a9;
+}
+
+.booking-info__link {
+  grid-area: "buttons";
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-weight: bold;
+}
+
+.booking-info__room {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 3fr;
+      grid-template-columns: 1fr 3fr;
+  -ms-grid-rows: ()[1fr];
+      grid-template-rows: repeat(1fr);
+  grid-template: "image" "title" "image" "description" "image" "buttons";
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.booking-info__title {
+  padding-left: 15px;
+  grid-area: "title";
+  margin: 15px 0;
+  font-weight: bold;
+}
+
+.booking-info__description {
+  padding-left: 15px;
+  grid-area: "description";
+}
+
+.booking-info__image {
+  grid-area: "image";
+  -ms-grid-row: 1;
+      grid-row-start: 1;
+  grid-row-end: 4;
+  width: 300px;
+  height: auto;
+}
+
+.booking-info__record {
+  margin: 15px 0;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 2fr 3fr;
+      grid-template-columns: 2fr 3fr;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.booking-info__delete {
+  margin-left: 25px;
+}
+
+.booking-info:last-child {
+  border-bottom: none;
+}
+
+@-webkit-keyframes hover-button {
+  from {
+    background-color: #c9e5fc;
+  }
+  100% {
+    background-color: #8ac4fa;
+    -webkit-box-shadow: 2px 2px 5px #1e11a9;
+            box-shadow: 2px 2px 5px #1e11a9;
+    color: #ffffff;
+  }
+}
+
+@keyframes hover-button {
+  from {
+    background-color: #c9e5fc;
+  }
+  100% {
+    background-color: #8ac4fa;
+    -webkit-box-shadow: 2px 2px 5px #1e11a9;
+            box-shadow: 2px 2px 5px #1e11a9;
+    color: #ffffff;
+  }
 }
