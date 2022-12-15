@@ -1,0 +1,43 @@
+.room-info {
+    position: relative;
+    text-align: center;
+
+    &__image {
+        width: 100%;
+        height: auto;
+    }
+    &__guests {
+        width: 100%;
+        padding: 10px 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    &__numberOfGuests {
+        min-width: 100px;
+
+        font-size: 18px;
+        margin-right: 10px;
+        padding: 5px 6px;
+        cursor: pointer;
+        border: 1px solid black;
+        border-radius: 10%;
+
+        &_active {
+            min-width: 100px;
+
+            font-size: 18px;
+            margin-right: 10px;
+            padding: 5px 6px;
+            cursor: pointer;
+            background-color: #3ac4fa;
+            color: white;
+            border-radius: 10%;
+            border: 2px solid rgb(41, 41, 235);
+        }
+    }
+
+    &__price {
+        font-weight: bold;
+    }
+}

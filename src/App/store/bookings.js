@@ -1,5 +1,6 @@
 import { createAction, createSlice } from '@reduxjs/toolkit';
 import bookingService from '../services/booking.service';
+import { loadRoomsList } from './rooms';
 
 const bookingSlice = createSlice({
     name: 'bookings',
@@ -32,13 +33,14 @@ const bookingSlice = createSlice({
             state.isLoading = false;
         },
         bookingCreated: (state, action) => {
+            console.log(action.payload);
             if (!Array.isArray(state.entities.current)) {
                 state.entities.current = [];
             }
             state.entities.current.push(action.payload);
         },
         bookingRemoved: (state, action) => {
-            state.entities = state.entities.filter((c) => c._id !== action.payload);
+            state.entities.current = state.entities.current.filter((c) => c._id !== action.payload);
         },
         bookingsReset: (state) => {
             state.entities = null;
@@ -80,6 +82,7 @@ export const createBooking = (payload) => async (dispatch) => {
         const data = await bookingService.create(payload);
         const { newBooking } = data;
         dispatch(bookingCreated(newBooking));
+        dispatch(loadRoomsList());
     } catch (error) {
         dispatch(createBookingFailed(error.message));
     }
@@ -103,6 +106,7 @@ export const removeBooking = (bookingId) => async (dispatch) => {
     dispatch(bookingRemoveRequested());
     try {
         const data = await bookingService.delete(bookingId);
+        console.log(data);
         if (data === null) {
             dispatch(bookingRemoved(bookingId));
         }
@@ -114,6 +118,12 @@ export const removeBooking = (bookingId) => async (dispatch) => {
 export const getUserBookings = () => (state) => {
     if (state.bookings.entities?.current) {
         return state.bookings.entities.current;
+    }
+};
+
+export const getBookingsList = () => (state) => {
+    if (state.bookings.entities?.allBookings) {
+        return state.bookings.entities.allBookings;
     }
 };
 

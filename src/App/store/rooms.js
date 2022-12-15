@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAction, createSlice } from '@reduxjs/toolkit';
 import roomsService from '../services/rooms.service';
 
 const roomsSlice = createSlice({
@@ -20,12 +20,19 @@ const roomsSlice = createSlice({
             state.error = action.payload;
             state.entities = null;
             state.isLoading = false;
+        },
+        roomUpdateSuccess: (state, action) => {
+            const roomIndex = state.entities.findIndex((r) => r._id === action.payload._id);
+            state.entities[roomIndex] = { ...action.payload };
         }
     }
 });
 
 const { reducer: roomsReducer, actions } = roomsSlice;
-const { roomsRequested, roomsRecieved, roomsRequestFailed } = actions;
+const { roomsRequested, roomsRecieved, roomsRequestFailed, roomUpdateSuccess } = actions;
+
+const roomUpdateRequested = createAction('rooms/roomUpdateRequested');
+const updateRoomFailed = createAction('rooms/updateRoomFailed');
 
 export const loadRoomsList = () => async (dispatch) => {
     dispatch(roomsRequested());
@@ -34,6 +41,16 @@ export const loadRoomsList = () => async (dispatch) => {
         dispatch(roomsRecieved(data));
     } catch (error) {
         dispatch(roomsRequestFailed(error.message));
+    }
+};
+
+export const updateRoomInfo = (payload) => async (dispatch) => {
+    dispatch(roomUpdateRequested());
+    try {
+        const data = await roomsService.update(payload);
+        dispatch(roomUpdateSuccess(data));
+    } catch (error) {
+        dispatch(updateRoomFailed(error.message));
     }
 };
 

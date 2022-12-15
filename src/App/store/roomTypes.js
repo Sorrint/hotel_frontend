@@ -39,4 +39,9 @@ export const loadRoomTypesList = () => async (dispatch) => {
 
 export const getRoomTypesLoadingStatus = () => (state) => state.roomTypes.isLoading;
 export const getRoomTypes = () => (state) => state.roomTypes.entities;
+export const getRoomTypeById = (id) => (state) => {
+    if (state.roomTypes.entities) {
+        return state.roomTypes.entities.find((type) => type._id === id);
+    }
+};
 export default roomTypesReducer;

@@ -4,6 +4,8 @@ $borderColor: #1e11a9;
 $buttonColor: #c9e5fc;
 $deleteButtonColor: #f54545;
 $borderDeleteColor: #ff0000c9;
+$confirmButtonColor: #04ca04;
+$borderConfirmColor: #0ca60c;
 
 @import "_nullstyle";
 
@@ -189,7 +191,10 @@ body {
 @import "../App/components/page/loginPage/_loginPage";
 @import "../App/components/common/form/_form";
 @import "../App/components/ui/_navProfile";
-@import "../App/components/common/modal/_modal";
 @import "../App/components/page/userPage/_userPage";
 @import "../App/components/ui/_sideBar";
-@import "../App/components/ui/_bookingInfo";
+@import "../App/components/ui/booking/_bookingInfo";
+@import "../App/components/ui/booking/_allBookings";
+@import "../App/components/common/portal/_portal";
+@import "../App/components/page/roomPage/_roomPage";
+@import "../App/components/ui/booking/_bookingDialog";

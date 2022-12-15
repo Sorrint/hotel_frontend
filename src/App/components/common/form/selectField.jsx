@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const SelectField = ({ label, value, onChange, defaultOption, options, name, error }) => {
     const handleChange = ({ target }) => {
-        onChange({ name: target.name, value: target.value });
+        onChange && onChange({ name: target.name, value: target.value });
     };
     const getInputClasses = () => {
         return 'form-select' + (error ? ' is-invalid' : '');
@@ -36,7 +36,7 @@ SelectField.propTypes = {
     value: PropTypes.string,
     onChange: PropTypes.func,
     defaultOption: PropTypes.string,
-    options: PropTypes.array,
+    options: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
     name: PropTypes.string,
     error: PropTypes.string
 };

@@ -8,18 +8,20 @@ const UserProfile = () => {
     const currentUser = useSelector(getUserById(userId));
 
     return (
-        <div className="content user-content">
-            <div className="user__card">
-                <div className="user__info">
-                    <div className="user__avatar">
-                        <img src={currentUser.avatar} alt="Аватарка" />
+        currentUser && (
+            <div className="content user-content">
+                <div className="user__card">
+                    <div className="user__info">
+                        <div className="user__avatar">
+                            <img src={currentUser.avatar} alt="Аватарка" />
+                        </div>
+                        <div className="user__username">Имя пользователя: {currentUser.username}</div>
+                        <div className="user__email">email: {currentUser.email}</div>
+                        <div className="user__sex">Пол: {currentUser.sex === 'male' ? 'мужской' : 'женский'}</div>
                     </div>
-                    <div className="user__username">Имя пользователя: {currentUser.username}</div>
-                    <div className="user__email">email: {currentUser.email}</div>
-                    <div className="user__sex">Пол: {currentUser.sex === 'male' ? 'мужской' : 'женский'}</div>
                 </div>
             </div>
-        </div>
+        )
     );
 };
 

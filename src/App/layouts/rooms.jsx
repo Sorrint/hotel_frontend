@@ -1,10 +1,10 @@
 import React from 'react';
 import { useLocation, useParams } from 'react-router-dom';
+import BookingPage from '../components/page/bookingPage';
 
-import RoomPage from '../components/page/roomPage/roomPage';
-import RoomsListPage from '../components/page/roomsListPage/roomsListPage';
+import RoomPage from '../components/page/roomPage';
+import RoomsListPage from '../components/page/roomsListPage';
 import AppLoader from '../components/ui/hoc/appLoader';
-import BookingPage from '../components/page/bookingPage/bookingPage';
 
 const Rooms = () => {
     const { roomId } = useParams();
