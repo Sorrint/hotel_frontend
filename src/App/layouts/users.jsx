@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
 import { Switch } from 'react-router-dom/cjs/react-router-dom';
 import { getRoutes } from '../App';
-import UserPage from '../components/page/userPage/userPage';
+import UserPage from '../components/page/userPage';
 import AppLoader from '../components/ui/hoc/appLoader';
 import { userRoutes } from '../routes';
 import { getCurrentUserId } from '../store/users';

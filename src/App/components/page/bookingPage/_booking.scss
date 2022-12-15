@@ -11,13 +11,12 @@
     &__image {
         width: 100%;
         height: auto;
-    }
-
-    &__description {
-        padding: 10px;
+        padding: 0;
     }
 
     &__title {
+        text-align: center;
+        padding: 5px 10px;
         font-size: 20px;
         color: blue;
         font-weight: bold;
@@ -26,6 +25,8 @@
 
     &__panel {
         margin-top: 10px;
+        padding: 10px;
+
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -44,8 +45,13 @@
         padding: 10px;
         font-size: 18px;
     }
+    &__properties {
+        padding: 0 10px;
+        font-weight: bold;
+        display: grid;
+        grid-auto-flow: column;
+    }
 }
-
 .booking-panel {
     height: 70px;
     width: 100%;

@@ -34,7 +34,7 @@ const SideBar = () => {
                         <li className={getClassname('roomsList')}>
                             <Link to={`${userPath}/roomsList`} className="sidebar__link">
                                 <span className="sidebar__icon"> {parse(`${icons.listRooms}`)}</span>
-                                <div className="sidebar__text">Список комнат</div>
+                                <div className="sidebar__text">Статус номеров</div>
                             </Link>
                         </li>
                         <li className={getClassname('allBookings')}>

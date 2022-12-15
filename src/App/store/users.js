@@ -120,6 +120,7 @@ export const getIsLoggedIn = () => (state) => state.users.isLoggedIn;
 export const getCurrentUserData = () => (state) => {
     return state.users.entities ? state.users.entities.find((u) => u._id === state.users.auth.userId) : null;
 };
+export const getUsersList = () => (state) => state.users.entities;
 
 export const getCurrentUserId = () => (state) => state.users.auth.userId;
 export const getUserById = (userId) => (state) => {

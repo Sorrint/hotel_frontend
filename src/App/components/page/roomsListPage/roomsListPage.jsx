@@ -3,10 +3,14 @@ import PropTypes from 'prop-types';
 import Banner from '../../common/banner/banner';
 import Footer from '../../common/footer';
 import Header from '../../common/header/header';
-import RoomCard from '../../common/room/roomCard';
 import { useSelector } from 'react-redux';
 import { getRooms } from '../../../store/rooms';
 import { getRoomTypes } from '../../../store/roomTypes';
+import RoomImage from '../../common/room/roomImage';
+import RoomCard from '../../ui/room/roomCard';
+import RoomCardText from '../../common/room/roomCardText';
+import RoomCardPrice from '../../ui/room/roomCardPrice';
+import { Link } from 'react-router-dom';
 
 const RoomsListPage = () => {
     const rooms = useSelector(getRooms());
@@ -21,6 +25,42 @@ const RoomsListPage = () => {
     };
     const upperCase = (text) => {
         return text.toUpperCase();
+    };
+    const roomCardOptions = {
+        image: {
+            subName: 'image',
+            path: 'image',
+            component: ({ key, ...rest }) => <RoomImage key={key} {...rest} />
+        },
+        title: {
+            subName: 'title',
+            path: 'title',
+            component: ({ key, ...rest }) => <RoomCardText key={key} {...rest} />
+        },
+        customString: {
+            subName: 'info',
+            component: ({ value, key, ...rest }) => (
+                <RoomCardText
+                    key={key}
+                    value={`Вместимость до ${value.maxNumberOfPersons} мест ${value.area} кв.м (${value.countOfRooms} комн)`}
+                    {...rest}
+                />
+            )
+        },
+        price: {
+            subName: 'price',
+            path: 'priceList',
+            component: ({ key, ...rest }) => <RoomCardPrice {...rest} key={key} />
+        },
+        link: {
+            subName: 'button',
+            path: '_id',
+            component: ({ value, key }) => (
+                <Link to={`rooms/${value}`} className="room-card__button" key={key}>
+                    ПОДРОБНЕЕ
+                </Link>
+            )
+        }
     };
 
     if (types) {
@@ -48,7 +88,15 @@ const RoomsListPage = () => {
                         </div>
                     </div>
                     <div className="content">
-                        {filteredRooms && filteredRooms.map((room) => <RoomCard {...room} key={room._id} />)}
+                        {filteredRooms &&
+                            filteredRooms.map((room) => (
+                                <RoomCard
+                                    options={roomCardOptions}
+                                    data={room}
+                                    wrapperName="room-card"
+                                    key={room._id}
+                                />
+                            ))}
                     </div>
                 </div>
                 <Footer />

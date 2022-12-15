@@ -26,13 +26,13 @@
         height: auto;
     }
 
-    &__price {
+    &__cost {
         padding: 20px 0;
 
         color: blue;
         font-size: 24px;
     }
-    &__guestsWrapper {
+    &__guests {
         width: 100%;
         padding: 10px 0;
         display: flex;
@@ -85,33 +85,21 @@
     font-weight: bold;
 
     &__content-left {
-        width: 80%;
+        width: 50vw;
+        flex-grow: 1;
     }
 
     &__content-right {
         position: relative;
-        flex-grow: 1;
+        flex-grow: 0;
         text-align: center;
-    }
-
-    &__image {
-        width: 100%;
-        height: auto;
     }
 
     &__properties {
         font-weight: bold;
-
-        &_column {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        &_row {
-            display: grid;
-            grid-auto-flow: column;
-        }
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
     &__property,
@@ -121,6 +109,7 @@
         align-items: center;
     }
     &__text {
+        font-size: 18px;
         font-weight: normal;
         text-align: center;
     }
@@ -141,34 +130,6 @@
 
     &__about {
         font-weight: normal;
-    }
-
-    &__numberOfGuests {
-        min-width: 100px;
-
-        font-size: 18px;
-        margin-right: 10px;
-        padding: 5px 6px;
-        cursor: pointer;
-        border: 1px solid black;
-        border-radius: 10%;
-
-        &_active {
-            min-width: 100px;
-
-            font-size: 18px;
-            margin-right: 10px;
-            padding: 5px 6px;
-            cursor: pointer;
-            background-color: #3ac4fa;
-            color: white;
-            border-radius: 10%;
-            border: 2px solid rgb(41, 41, 235);
-        }
-    }
-
-    &__price {
-        font-weight: bold;
     }
 }
 @media screen and (max-width: 1130px) {

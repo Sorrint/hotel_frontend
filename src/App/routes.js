@@ -1,19 +1,21 @@
 import Rooms from './layouts/rooms';
-import MainPage from './components/page/mainPage';
-import About from './components/page/aboutPage/about';
-import Services from './components/page/servicesPage/services';
-import News from './components/page/newsPage/news';
-import Contacts from './components/page/contactsPage/contacts';
-import AdminPanel from './components/common/adminPanel';
-import LoginPage from './components/page/loginPage/loginPage';
 import LogOut from './layouts/logOut';
 import Users from './layouts/users';
+
+import AboutPage from './components/page/aboutPage';
+import Contacts from './components/page/contactsPage';
+import LoginPage from './components/page/loginPage';
+import MainPage from './components/page/mainPage';
+import NewsPage from './components/page/newsPage';
+import Services from './components/page/servicesPage';
+
+import AdminPanel from './components/common/adminPanel';
 import EditUserData from './components/ui/editUserData';
-import UserBookings from './components/ui/userBookings';
 import UserProfile from './components/ui/userProfile';
-import AllBookings from './components/ui/allBookings';
-import RoomsData from './components/ui/roomsData';
+import RoomsData from './components/ui/room/roomsData';
 import EditRoomData from './components/ui/editRoomData';
+import AllBookings from './components/ui/booking/allBookings';
+import UserBookings from './components/ui/booking/userBookings';
 
 export const publicRoutes = [
     { path: '/', name: 'Main Page', component: MainPage, exact: true },
@@ -22,9 +24,9 @@ export const publicRoutes = [
     { path: '/logout', name: 'LogOut', component: LogOut },
     { path: '/login', name: 'Login', component: LoginPage },
     { path: '/adminPanel', name: 'AdminPanel', component: AdminPanel },
-    { path: '/about', name: 'About', component: About },
+    { path: '/about', name: 'About', component: AboutPage },
     { path: '/services', name: 'Services', component: Services },
-    { path: '/news', name: 'News', component: News },
+    { path: '/news', name: 'News', component: NewsPage },
     { path: '/contacts', name: 'Contacts', component: Contacts },
     { path: '/users/:userId?/:route?', name: 'Users', component: Users, protected: true, exact: true }
 ];
