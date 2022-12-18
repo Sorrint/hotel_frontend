@@ -14,6 +14,10 @@
   box-sizing: border-box;
 }
 
+*[role="button"] {
+  cursor: pointer;
+}
+
 :focus,
 :active {
   outline: none;
@@ -257,6 +261,27 @@ body {
   color: #ffffff;
 }
 
+.info-button {
+  font-size: 20px;
+  margin-left: 15px;
+  border: 2px solid #1e11a9;
+  padding: 10px;
+  background-color: #c9e5fc;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.info-button:hover {
+  -webkit-animation-name: hover-button;
+          animation-name: hover-button;
+  -webkit-animation-duration: 0.3s;
+          animation-duration: 0.3s;
+  background-color: #8ac4fa;
+  color: #ffffff;
+  -webkit-box-shadow: 2px 2px 5px #1e11a9;
+          box-shadow: 2px 2px 5px #1e11a9;
+}
+
 @-webkit-keyframes hover-delete-button {
   from {
     background-color: #ffffff;
@@ -275,6 +300,19 @@ body {
     background-color: #f54545;
     color: #ffffff;
   }
+}
+
+.edit-button {
+  stroke: #1e11a9;
+  stroke-width: 2;
+}
+
+.edit-button_abs {
+  position: absolute;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  -ms-grid-column-align: end;
+      justify-self: end;
 }
 
 .header {
@@ -310,6 +348,7 @@ body {
   color: white;
   -webkit-box-shadow: 10px 5px 5px #8ac4fa;
           box-shadow: 10px 5px 5px #8ac4fa;
+  z-index: 20;
 }
 
 .header__content {
@@ -679,7 +718,6 @@ button {
 .room-card {
   margin: 20px 0;
   width: 560px;
-  height: 670px;
   border: 1px solid black;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -694,7 +732,9 @@ button {
   font-weight: bold;
   text-align: center;
   overflow: hidden;
+  padding-bottom: 20px;
   font-family: "Orchidea", serif;
+  font-size: 18px;
 }
 
 .room-card__title {
@@ -731,21 +771,40 @@ button {
 }
 
 .room-card__numberOfGuests {
-  margin-right: 10px;
-  padding: 5px 6px;
-  cursor: pointer;
-  border: 1px solid black;
-  border-radius: 10%;
+  font-size: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-shadow: 2px 2px 5px #1e11a9;
+          box-shadow: 2px 2px 5px #1e11a9;
 }
 
 .room-card__numberOfGuests_active {
-  margin-right: 10px;
-  padding: 5px 6px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  min-width: 100px;
+  border: 2px solid #0ca60c;
+  font-size: 18px;
+  margin-right: 0px;
   cursor: pointer;
-  background-color: #3ac4fa;
+  background-color: #04ca04;
   color: white;
   border-radius: 10%;
-  border: 2px solid #2929eb;
+  -webkit-box-shadow: 2px 2px 5px #0ca60c;
+          box-shadow: 2px 2px 5px #0ca60c;
 }
 
 .room-card__info {
@@ -753,13 +812,8 @@ button {
 }
 
 .room-card__button {
-  margin: 10px 0;
-  padding: 10px 10px;
-  border-radius: 5%;
-  color: white;
-  font-size: 24px;
-  font-weight: bold;
-  background-color: #3ac4fa;
+  margin-top: 10px;
+  width: 250px;
 }
 
 .room-description {
@@ -1037,14 +1091,14 @@ button {
   text-align: center;
 }
 
+.form-label {
+  font-size: 16px;
+  padding: 10px;
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-}
-
-.form-container__title {
-  font-weight: bold;
-  margin: 10px 0;
 }
 
 h2 {
@@ -1089,6 +1143,14 @@ button:focus {
   border-color: #ffffff;
 }
 
+.form-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  -webkit-transition: all 0.6s ease-in-out;
+  transition: all 0.6s ease-in-out;
+}
+
 .form-container__form {
   background-color: #ffffff;
   display: -webkit-box;
@@ -1126,6 +1188,11 @@ button:focus {
   margin: 8px 0;
 }
 
+.form-container__title {
+  font-weight: bold;
+  margin: 10px 0;
+}
+
 .login-form,
 .signup-form {
   font-size: 20px;
@@ -1140,14 +1207,6 @@ button:focus {
   width: 768px;
   max-width: 100%;
   min-height: 480px;
-}
-
-.form-container {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  -webkit-transition: all 0.6s ease-in-out;
-  transition: all 0.6s ease-in-out;
 }
 
 .sign-in-container {
@@ -1301,7 +1360,7 @@ button:focus {
   -ms-grid-columns: 2fr 6fr;
       grid-template-columns: 2fr 6fr;
   grid-auto-flow: row dense;
-      grid-template-areas: "label input" "error error";
+      grid-template-areas: "label input" "error error";
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -1310,21 +1369,33 @@ button:focus {
 }
 
 .input-container__label {
-  grid-area: "label";
+  padding-right: 10px;
+  text-align: right;
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: label;
   font-size: 16px;
   word-wrap: normal;
 }
 
 .input-container__input {
   background-color: #eee;
+  font-family: "Orchidea", sans-serif;
   border: none;
-  padding: 12px 15px;
+  padding: 12px 0px 12px 15px;
+  font-size: 16px;
+  resize: none;
 }
 
 .input-container__password-button {
   background-color: #eee;
   height: 100%;
   width: 2rem;
+}
+
+.input-container__icon {
+  stroke: black;
+  stroke-width: 1;
 }
 
 .avatar-container {
@@ -1400,12 +1471,13 @@ button:focus {
 }
 
 .input-group {
-  width: 100%;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 4fr auto;
-      grid-template-columns: 4fr auto;
-  grid-area: "input";
+  -ms-grid-columns: 3fr auto;
+      grid-template-columns: 3fr auto;
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: input;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -1627,29 +1699,6 @@ button:focus {
   font-size: 20px;
 }
 
-.booking-info__button {
-  font-size: 20px;
-  margin-left: 15px;
-  height: 48px;
-  border: 2px solid #1e11a9;
-  padding: 10px;
-  width: 250px;
-  background-color: #c9e5fc;
-  border-radius: 5px;
-  text-align: center;
-}
-
-.booking-info__button:hover {
-  -webkit-animation-name: hover-button;
-          animation-name: hover-button;
-  -webkit-animation-duration: 0.3s;
-          animation-duration: 0.3s;
-  background-color: #8ac4fa;
-  color: #ffffff;
-  -webkit-box-shadow: 2px 2px 5px #1e11a9;
-          box-shadow: 2px 2px 5px #1e11a9;
-}
-
 .booking-info__link {
   grid-area: "buttons";
   display: -webkit-box;
@@ -1778,21 +1827,15 @@ button:focus {
 .bookings-table__title {
   font-size: 24px;
   padding: 10px 30px;
+  stroke: #000000;
+  stroke-width: 1;
 }
 
 .roomData-table__value,
 .bookings-table__value {
   font-size: 18px;
   height: 50px;
-  stroke: #000000;
-  stroke-width: 2;
   padding: 0 30px;
-}
-
-.roomData-table__value.edit,
-.bookings-table__value.edit {
-  stroke: #1e11a9;
-  padding: 20px 0;
 }
 
 .roomData-table__row,
@@ -1808,6 +1851,19 @@ button:focus {
 
 .bookings-table__value {
   padding: 0 20px;
+}
+
+.sort-direction {
+  stroke: #000;
+  stroke-width: 1;
+  position: absolute;
+}
+
+.bookings-settings {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[5];
+      grid-template-columns: repeat(5, 1fr);
 }
 
 .popup__container {
@@ -1867,25 +1923,39 @@ button:focus {
 }
 
 .room-info__numberOfGuests {
-  min-width: 100px;
-  font-size: 18px;
-  margin-right: 10px;
-  padding: 5px 6px;
-  cursor: pointer;
-  border: 1px solid black;
-  border-radius: 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-shadow: 2px 2px 5px #1e11a9;
+          box-shadow: 2px 2px 5px #1e11a9;
 }
 
 .room-info__numberOfGuests_active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   min-width: 100px;
+  border: 2px solid #0ca60c;
   font-size: 18px;
-  margin-right: 10px;
-  padding: 5px 6px;
+  margin-right: 0px;
   cursor: pointer;
-  background-color: #3ac4fa;
+  background-color: #04ca04;
   color: white;
   border-radius: 10%;
-  border: 2px solid #2929eb;
+  -webkit-box-shadow: 2px 2px 5px #0ca60c;
+          box-shadow: 2px 2px 5px #0ca60c;
 }
 
 .room-info__price {
@@ -2023,4 +2093,112 @@ button:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.room-status__free {
+  padding: 10px 5px;
+  background-color: #04ca04;
+  border-radius: 10px;
+  color: #ffffff;
+}
+
+.room-status__busy {
+  padding: 10px;
+  background-color: #f54545;
+  border-radius: 10px;
+  color: #ffffff;
+}
+
+.admin-panel__content {
+  min-height: 30vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 80vh;
+  position: relative;
+  padding: 10px;
+  background-color: #fff;
+  z-index: 1;
+  width: 550px;
+  font-size: 18px;
+  border-radius: 10px;
+}
+
+.check-inputs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.form-check {
+  margin: 5px;
+}
+
+.form-check-label {
+  padding: 5px;
+  pointer-events: none;
+}
+
+.form-select__roomTypes {
+  font-size: 16px;
+  font-family: "Orchidea", sans-serif;
+  background-color: #eee;
+  padding: 12px 0 12px 15px;
+}
+
+.pricelist__container {
+  width: 100%;
+}
+
+.close-button {
+  width: 40px;
+  height: 40px;
+  right: 10px;
+  border-radius: 40px;
+  position: absolute;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.close-button:before {
+  content: "+";
+  color: #337ab7;
+  position: absolute;
+  z-index: 2;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  font-size: 50px;
+  line-height: 1;
+  top: -5px;
+  left: 6px;
+  -webkit-transition: all 0.3s cubic-bezier(0.77, 0, 0.2, 0.85);
+  transition: all 0.3s cubic-bezier(0.77, 0, 0.2, 0.85);
+}
+
+.close-button:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  background: #337ab7;
+  z-index: 1;
+  -webkit-transition: all 0.3s cubic-bezier(0.77, 0, 0.2, 0.85);
+  transition: all 0.3s cubic-bezier(0.77, 0, 0.2, 0.85);
+  -webkit-transform: scale(0.01);
+          transform: scale(0.01);
+}
+
+.close-button:hover:after {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.close-button:hover:before {
+  -webkit-transform: scale(0.8) rotate(45deg);
+          transform: scale(0.8) rotate(45deg);
+  color: #fff;
 }

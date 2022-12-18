@@ -23,7 +23,7 @@ const BookingCardPanel = ({ value, wrapperName, wrapperSubName, onSelect, onClic
                     wrapperSubName={bookingInfo.subName}
                 />
             </div>
-            <button className={`${wrapperName}__button`} onClick={handleSelect}>
+            <button className={`${wrapperName}__button info-button`} onClick={handleSelect}>
                 Выбрать
             </button>
         </div>

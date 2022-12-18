@@ -1,6 +1,7 @@
 export const existingMethods = {
     isCapitalSymbol: 'isCapitalSymbol',
-    isContainDigit: 'isContainDigit'
+    isContainDigit: 'isContainDigit',
+    isNumber: 'isNumber'
 };
 export function validator(value, config) {
     if (!Array.isArray(config)) {
@@ -24,6 +25,14 @@ export function validator(value, config) {
                 statusValidate = !digitRegExp.test(value);
                 if (statusValidate) {
                     message = 'Поле должно содержать хотя бы одну цифру!';
+                }
+                break;
+            }
+            case 'isNumber': {
+                const digitRegExp = /^\d+$/g;
+                statusValidate = !digitRegExp.test(value);
+                if (statusValidate) {
+                    message = 'Поле должно содержать только цифры!';
                 }
                 break;
             }

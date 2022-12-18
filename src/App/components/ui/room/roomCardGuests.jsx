@@ -8,7 +8,7 @@ const RoomCardGuests = ({ priceList, wrapperName, wrapperSubName, onClick, curre
     };
     const getClassName = (number) => {
         const name = `${wrapperName}__numberOfGuests`;
-        return number === currentPersons ? `${name}_active` : name;
+        return number === currentPersons ? `${name}_active info-button` : `${name} info-button`;
     };
     return (
         <div className={`${wrapperName}__${wrapperSubName}`}>

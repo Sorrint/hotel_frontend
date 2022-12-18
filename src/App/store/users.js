@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAction, createSlice } from '@reduxjs/toolkit';
 import authService from '../services/auth.service';
 import localStorageService from '../services/localStorage.service';
 import userService from '../services/users.service';
@@ -68,9 +68,12 @@ const {
     authRequested,
     authRequestSuccess,
     authRequestFailed,
-    userLoggedOut
-    // userUpdated
+    userLoggedOut,
+    userUpdated
 } = actions;
+
+const userUpdateRequested = createAction('users/userUpdateRequested');
+const updateUserFailed = createAction('users/updateUserFailed');
 
 export const signUp = (userData) => async (dispatch) => {
     dispatch(authRequested());
@@ -81,6 +84,18 @@ export const signUp = (userData) => async (dispatch) => {
         history.push('/');
     } catch (error) {
         dispatch(authRequestFailed(error.response.data.message));
+    }
+};
+
+export const updateUserData = (payload) => async (dispatch) => {
+    dispatch(userUpdateRequested());
+    console.log(payload);
+    try {
+        const data = await userService.update(payload);
+        dispatch(userUpdated(data));
+        // history.push(`/users/${content._id}`);
+    } catch (error) {
+        dispatch(updateUserFailed(error.message));
     }
 };
 

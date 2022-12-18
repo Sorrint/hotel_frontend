@@ -1,10 +1,10 @@
 import parse from 'html-react-parser';
 
 export const renderGuests = (number) => {
-    if (number % 100 >= 11 && number % 100 <= 20) {
+    if (Number(number) % 100 >= 11 && Number(number) % 100 <= 20) {
         return `${number} гостей`;
     } else {
-        const lastDigit = number.toString().split('').pop();
+        const lastDigit = String(number).split('').pop();
         switch (lastDigit) {
             case '1':
                 return `${number} гость`;
@@ -19,10 +19,10 @@ export const renderGuests = (number) => {
 };
 
 export const renderNights = (number) => {
-    if (number % 100 >= 11 && number % 100 <= 20) {
+    if (Number(number) % 100 >= 11 && Number(number) % 100 <= 20) {
         return `${number} ночей`;
     } else {
-        const lastDigit = number.toString().split('').pop();
+        const lastDigit = String(number).split('').pop();
         switch (lastDigit) {
             case '1':
                 return `${number} ночь`;
@@ -68,7 +68,6 @@ export async function getData(service) {
 export const getToday = () => {
     const date = new Date();
     const today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-
     return today;
 };
 

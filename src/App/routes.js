@@ -9,13 +9,11 @@ import MainPage from './components/page/mainPage';
 import NewsPage from './components/page/newsPage';
 import Services from './components/page/servicesPage';
 
-import AdminPanel from './components/common/adminPanel';
 import EditUserData from './components/ui/editUserData';
 import UserProfile from './components/ui/userProfile';
-import RoomsData from './components/ui/room/roomsData';
-import EditRoomData from './components/ui/editRoomData';
-import AllBookings from './components/ui/booking/allBookings';
 import UserBookings from './components/ui/booking/userBookings';
+import BookingsList from './components/page/userPage/bookingsList';
+import AdminPanel from './components/page/userPage/adminPanel';
 
 export const publicRoutes = [
     { path: '/', name: 'Main Page', component: MainPage, exact: true },
@@ -38,7 +36,7 @@ export const userRoutes = [
     {
         pathname: '/allBookings',
         name: 'bookingsList',
-        component: AllBookings,
+        component: BookingsList,
         protected: true,
         condition: 'isAdmin',
         redirect: '/profile'
@@ -46,15 +44,7 @@ export const userRoutes = [
     {
         pathname: '/roomsList',
         name: 'roomsList',
-        component: RoomsData,
-        protected: true,
-        condition: 'isAdmin',
-        redirect: '/profile'
-    },
-    {
-        pathname: '/editRoom',
-        name: 'editRoom',
-        component: EditRoomData,
+        component: AdminPanel,
         protected: true,
         condition: 'isAdmin',
         redirect: '/profile'
