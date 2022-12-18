@@ -108,11 +108,8 @@ body {
         margin: 10px 0;
         padding: 10px 10px;
         border-radius: 5%;
-
-        // color: white;
         font-size: 24px;
         font-weight: bold;
-        // background-color: #3ac4fa;
     }
 }
 
@@ -171,14 +168,42 @@ body {
     color: #ffffff;
 }
 
+.info-button {
+    font-size: 20px;
+    margin-left: 15px;
+    // height: 48px;
+    border: 2px solid $borderColor;
+    padding: 10px;
+    background-color: $buttonColor;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.info-button:hover {
+    animation-name: hover-button;
+    animation-duration: 0.3s;
+    background-color: $hoverColor;
+    color: #ffffff;
+    box-shadow: 2px 2px 5px $borderColor;
+}
+
 @keyframes hover-delete-button {
     from {
         background-color: #ffffff;
     }
     100% {
         background-color: $deleteButtonColor;
-        // box-shadow: 2px 2px 5px $borderDeleteColor;
         color: #ffffff;
+    }
+}
+
+.edit-button {
+    stroke: $borderColor;
+    stroke-width: 2;
+    &_abs {
+        position: absolute;
+        align-self: flex-end;
+        justify-self: end;
     }
 }
 
@@ -198,3 +223,5 @@ body {
 @import "../App/components/common/portal/_portal";
 @import "../App/components/page/roomPage/_roomPage";
 @import "../App/components/ui/booking/_bookingDialog";
+@import "../App/components/common/room/_roomStatus";
+@import "../App/components/ui/_editRoom";

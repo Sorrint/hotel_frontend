@@ -127,4 +127,6 @@ export const getBookingsList = () => (state) => {
     }
 };
 
+export const getBookingsLoadingStatus = () => (state) => state.bookings.isLoading;
+
 export default bookingsReducer;

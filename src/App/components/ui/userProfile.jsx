@@ -2,6 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { getCurrentUserId, getUserById } from '../../store/users';
+import parse from 'html-react-parser';
+
+import { Link } from 'react-router-dom';
+import { icons } from '../../api/icons';
 
 const UserProfile = () => {
     const userId = useSelector(getCurrentUserId());
@@ -12,6 +16,10 @@ const UserProfile = () => {
             <div className="content user-content">
                 <div className="user__card">
                     <div className="user__info">
+                        <Link to={`/users/${userId}/edit`}>
+                            <div className="edit-button_abs">{parse(icons.edit)}</div>
+                        </Link>
+
                         <div className="user__avatar">
                             <img src={currentUser.avatar} alt="Аватарка" />
                         </div>

@@ -3,25 +3,37 @@
     grid-template-columns: 2fr 6fr;
     // grid-template-rows: auto;
     grid-auto-flow: row dense;
-    grid-template-areas: "label input" "error error";
+    grid-template-areas:
+        "label input"
+        "error error";
     align-items: center;
     width: 100%;
     margin: 8px 0;
 
     &__label {
-        grid-area: "label";
+        padding-right: 10px;
+        text-align: right;
+        grid-area: label;
         font-size: 16px;
         word-wrap: normal;
     }
     &__input {
         background-color: #eee;
+        font-family: "Orchidea", sans-serif;
+
         border: none;
-        padding: 12px 15px;
+        padding: 12px 0px 12px 15px;
+        font-size: 16px;
+        resize: none;
     }
     &__password-button {
         background-color: #eee;
         height: 100%;
         width: 2rem;
+    }
+    &__icon {
+        stroke: black;
+        stroke-width: 1;
     }
 }
 
@@ -75,13 +87,12 @@
     }
 }
 .input-group {
-    width: 100%;
     display: grid;
-    grid-template-columns: 4fr auto;
-    grid-area: "input";
-
+    grid-template-columns: 3fr auto;
+    grid-area: input;
     align-items: center;
 }
+
 .form-control {
     width: 100%;
 }

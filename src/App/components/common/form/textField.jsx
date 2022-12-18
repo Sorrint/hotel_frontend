@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import parse from 'html-react-parser';
+import { icons } from '../../../api/icons';
 
-const TextField = ({ label, type, name, error, placeholder, register, formName, autoComplete }) => {
+const TextField = ({ label, type, name, error, placeholder, register, formName, autoComplete, field, value }) => {
     const [showPassword, setShowPassword] = useState(false);
+    const icon = showPassword === false ? parse(`${icons.closedEye}`) : parse(`${icons.openEye}`);
     const getInputClasses = () => {
         return 'input-container__input' + (error ? ' is-invalid' : '');
     };
@@ -25,11 +28,12 @@ const TextField = ({ label, type, name, error, placeholder, register, formName, 
                     placeholder={placeholder}
                     {...register}
                     autoComplete={autoComplete}
+                    {...field}
                 />
 
                 {type === 'password' && (
                     <button className="input-container__password-button" type="button" onClick={toggleShowPassword}>
-                        <i className={'bi bi-eye' + (showPassword ? '-slash' : '')}></i>
+                        <i className="input-container__icon">{icon}</i>
                     </button>
                 )}
             </div>
@@ -51,5 +55,7 @@ TextField.propTypes = {
     placeholder: PropTypes.string,
     register: PropTypes.object,
     formName: PropTypes.string,
-    autoComplete: PropTypes.string
+    autoComplete: PropTypes.string,
+    field: PropTypes.object,
+    value: PropTypes.number
 };

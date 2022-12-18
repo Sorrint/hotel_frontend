@@ -45,10 +45,10 @@ const BookingRecord = ({ record, onRemove }) => {
                     <div className="booking-info__title">{room.title}</div>
                     <div className="booking-info__description">{room.description}</div>
                     <div className="booking-info__link">
-                        <div className="booking-info__button">
+                        <div className="booking-info__button info-button">
                             <Link to={`/rooms/${room._id}`}>Описание номера</Link>
                         </div>
-                        <div className="booking-info__delete">
+                        <div className="booking-info__delete ">
                             <button className=" delete-button" onClick={handleDelete}>
                                 Удалить бронь
                             </button>

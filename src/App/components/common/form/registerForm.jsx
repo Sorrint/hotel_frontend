@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { signUp } from '../../../store/users';
@@ -31,14 +31,17 @@ const RegisterForm = () => {
         register,
         handleSubmit,
         setValue,
-        control,
+        watch,
         formState: { errors }
     } = useForm({ mode: 'onChange' });
     const gender = [
         { name: 'male', value: 'мужской' },
         { name: 'female', value: 'женский' }
     ];
-
+    useEffect(() => {
+        const subscription = watch((value, { name, type }) => console.log(value, name, type));
+        return () => subscription.unsubscribe();
+    }, [watch]);
     const onSubmit = (data) => {
         dispatch(signUp(data));
     };
@@ -75,15 +78,7 @@ const RegisterForm = () => {
                     error={errors.password?.message}
                     autoComplete="new-password"
                 />
-                <RadioField
-                    label="Пол"
-                    name="sex"
-                    register={register}
-                    control={control}
-                    options={gender}
-                    setValue={setValue}
-                    value="male"
-                />
+                <RadioField label="Пол" name="sex" register={register} options={gender} value="male" />
                 <Avatar
                     name="avatar"
                     label="Аватар"

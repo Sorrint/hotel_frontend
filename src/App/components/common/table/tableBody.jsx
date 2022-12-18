@@ -13,9 +13,9 @@ const TableBody = ({ columns, data, tableName }) => {
         return item[columns[column].path];
     };
     return (
-        <tbody className={`${tableName}__row`}>
+        <tbody>
             {data.map((item) => (
-                <tr key={item._id}>
+                <tr key={item._id} className={`${tableName}__row`}>
                     {Object.keys(columns).map((column) => (
                         <td key={column} className={`${tableName}__value`}>
                             {renderContent(item, column)}

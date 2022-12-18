@@ -56,7 +56,7 @@ const RoomsListPage = () => {
             subName: 'button',
             path: '_id',
             component: ({ value, key }) => (
-                <Link to={`rooms/${value}`} className="room-card__button" key={key}>
+                <Link to={`rooms/${value}`} className="room-card__button info-button" key={key}>
                     ПОДРОБНЕЕ
                 </Link>
             )
