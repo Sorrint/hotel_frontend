@@ -81,3 +81,30 @@
     transform: scale(0.8) rotate(45deg);
     color: #fff;
 }
+
+.remove-button {
+    background-color: inherit;
+    display: inline-flex;
+    width: 1rem;
+    height: 1rem;
+    position: relative;
+    cursor: pointer;
+}
+
+.remove-button::before,
+.remove-button::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1rem;
+    height: 0.1rem;
+    background-color: #f00;
+    margin: -0.05rem 0 0 -0.4rem;
+    transform: rotate(-45deg);
+    border-radius: 0.1rem;
+}
+
+.remove-button::after {
+    transform: rotate(45deg);
+}

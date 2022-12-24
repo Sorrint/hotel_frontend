@@ -17,6 +17,7 @@ const RoomCardGuests = ({ priceList, wrapperName, wrapperSubName, onClick, curre
                     className={getClassName(guestsNumber)}
                     key={guestsNumber}
                     onClick={() => handleClick(guestsNumber)}
+                    role="button"
                 >
                     <RenderGuests numberOfGuests={guestsNumber} />
                 </div>

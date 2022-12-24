@@ -28,6 +28,12 @@ const SideBar = () => {
                         <div className="sidebar__text">Мои бронирования</div>
                     </Link>
                 </li>
+                <li className={getClassname('review')}>
+                    <Link to={`${userPath}/review`} className="sidebar__link">
+                        <span className="sidebar__icon"> {parse(`${icons.review}`)}</span>
+                        <div className="sidebar__text">Оставить отзыв</div>
+                    </Link>
+                </li>
 
                 {isAdmin && (
                     <>

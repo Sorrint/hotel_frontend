@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import TextField from '../common/form/textField';
@@ -6,6 +6,7 @@ import RadioField from '../common/form/radioField';
 import Avatar from '../common/form/avatar';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCurrentUserId, getUserById, updateUserData } from '../../store/users';
+import BackHistoryButton from '../common/backButton';
 
 const EditUserData = () => {
     const userId = useSelector(getCurrentUserId());
@@ -32,7 +33,6 @@ const EditUserData = () => {
         register,
         handleSubmit,
         setValue,
-        watch,
         formState: { errors }
     } = useForm({
         mode: 'onChange',
@@ -43,11 +43,6 @@ const EditUserData = () => {
         }
     });
 
-    useEffect(() => {
-        const subscription = watch((value, { name, type }) => console.log(value, name, type));
-        return () => subscription.unsubscribe();
-    }, [watch]);
-
     const onSubmit = (data) => {
         const updateData = { ...data, _id: user._id };
         dispatch(updateUserData(updateData));
@@ -55,6 +50,7 @@ const EditUserData = () => {
     return (
         <div className="content user-content">
             <div className="form-container__user-edit">
+                <BackHistoryButton />
                 <form className="form-container__form " onSubmit={handleSubmit(onSubmit)}>
                     <h1 className="form-container__title">РЕДАКТИРОВАТЬ ПРОФИЛЬ</h1>
                     <TextField

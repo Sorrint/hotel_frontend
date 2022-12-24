@@ -11,9 +11,11 @@ import Services from './components/page/servicesPage';
 
 import EditUserData from './components/ui/editUserData';
 import UserProfile from './components/ui/userProfile';
-import UserBookings from './components/ui/booking/userBookings';
 import BookingsList from './components/page/userPage/bookingsList';
 import AdminPanel from './components/page/userPage/adminPanel';
+import ReviewsPage from './components/page/reviewsPage';
+import Review from './components/page/userPage/review';
+import UserBookings from './components/page/userPage/userBookings';
 
 export const publicRoutes = [
     { path: '/', name: 'Main Page', component: MainPage, exact: true },
@@ -26,6 +28,7 @@ export const publicRoutes = [
     { path: '/services', name: 'Services', component: Services },
     { path: '/news', name: 'News', component: NewsPage },
     { path: '/contacts', name: 'Contacts', component: Contacts },
+    { path: '/reviews', name: 'Reviews', component: ReviewsPage, protected: true },
     { path: '/users/:userId?/:route?', name: 'Users', component: Users, protected: true, exact: true }
 ];
 
@@ -33,6 +36,7 @@ export const userRoutes = [
     { pathname: '/edit', name: 'edit', component: EditUserData },
     { pathname: '/profile', name: 'profile', component: UserProfile },
     { pathname: '/myBookings', name: 'userBookings', component: UserBookings },
+    { pathname: '/review', name: 'review', component: Review },
     {
         pathname: '/allBookings',
         name: 'bookingsList',

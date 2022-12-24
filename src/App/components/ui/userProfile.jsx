@@ -16,7 +16,7 @@ const UserProfile = () => {
             <div className="content user-content">
                 <div className="user__card">
                     <div className="user__info">
-                        <Link to={`/users/${userId}/edit`}>
+                        <Link className="user__edit" to={`/users/${userId}/edit`}>
                             <div className="edit-button_abs">{parse(icons.edit)}</div>
                         </Link>
 

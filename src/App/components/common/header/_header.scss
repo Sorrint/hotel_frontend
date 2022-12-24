@@ -69,11 +69,10 @@
         white-space: nowrap;
     }
 
-    &__login {
+    &__button {
         background: none;
         border-radius: 20px;
         border: 1px solid #ffffff;
-        // background-color: #1e11a9;
         color: #ffffff;
         font-size: 12px;
         font-weight: bold;
@@ -81,6 +80,12 @@
         letter-spacing: 1px;
         text-transform: uppercase;
         transition: transform 80ms ease-in;
-        margin: 8px 0;
+        margin: 8px;
+    }
+
+    &__bookings {
+        border: 1px solid #ffffff;
+        border-radius: 5px;
+        padding: 5px;
     }
 }

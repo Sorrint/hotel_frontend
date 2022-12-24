@@ -8,12 +8,17 @@ import history from '../../../utils/history';
 const LoginForm = () => {
     const dispatch = useDispatch();
     const formName = 'sign-in-Form';
-    const { register, handleSubmit } = useForm();
-
+    const {
+        register,
+        handleSubmit,
+        setError,
+        formState: { errors }
+    } = useForm();
     const onSubmit = (data) => {
-        const redirect = history.location.state ? history.location.state.from.pathname : history.goBack();
-        dispatch(login({ payload: data, redirect }));
+        const redirect = history.location?.state ? history.location.state.from.pathname : '/';
+        dispatch(login({ payload: data, redirect, setError }));
     };
+
     return (
         <div className="form-container sign-in-container">
             <form className="form-container__form" onSubmit={handleSubmit(onSubmit)}>
@@ -36,6 +41,7 @@ const LoginForm = () => {
                     formName={formName}
                     autoComplete="current-password"
                 />
+                {errors?.apiError?.message && <div className="error">{errors?.apiError?.message}</div>}
                 <button className="form-container__button">ВОЙТИ</button>
             </form>
         </div>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { signUp } from '../../../store/users';
@@ -31,17 +31,13 @@ const RegisterForm = () => {
         register,
         handleSubmit,
         setValue,
-        watch,
         formState: { errors }
     } = useForm({ mode: 'onChange' });
     const gender = [
         { name: 'male', value: 'мужской' },
         { name: 'female', value: 'женский' }
     ];
-    useEffect(() => {
-        const subscription = watch((value, { name, type }) => console.log(value, name, type));
-        return () => subscription.unsubscribe();
-    }, [watch]);
+
     const onSubmit = (data) => {
         dispatch(signUp(data));
     };

@@ -40,9 +40,24 @@
         border-radius: 15px;
     }
 
+    &__edit {
+        align-self: flex-end;
+        padding-right: 80px;
+        z-index: 50;
+        stroke: #1e11a9;
+        stroke-width: 2;
+    }
     &__email,
     &__sex,
     &__username {
         margin: 25px 0;
     }
+}
+
+.review__button {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-top: 20px;
 }

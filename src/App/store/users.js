@@ -9,14 +9,14 @@ const initialState = localStorageService.getAccessToken()
     ? {
           error: null,
           isLoading: true,
-          auth: { userId: localStorageService.getUserId() },
+          auth: { userId: localStorageService.getUserId(), userRole: localStorageService.getRole() },
           isLoggedIn: true,
           dataLoaded: false
       }
     : {
           error: null,
           isLoading: false,
-          auth: null,
+          auth: { userRole: 'user' },
           isLoggedIn: false,
           dataLoaded: false
       };
@@ -35,7 +35,6 @@ const userSlice = createSlice({
         },
         usersRequestFailed: (state, action) => {
             state.error = action.payload;
-            state.isLoading = false;
         },
         authRequested: (state) => {
             state.error = null;
@@ -89,28 +88,30 @@ export const signUp = (userData) => async (dispatch) => {
 
 export const updateUserData = (payload) => async (dispatch) => {
     dispatch(userUpdateRequested());
-    console.log(payload);
     try {
         const data = await userService.update(payload);
         dispatch(userUpdated(data));
-        // history.push(`/users/${content._id}`);
+        history.push(`/users/${data._id}/profile`);
     } catch (error) {
         dispatch(updateUserFailed(error.message));
     }
 };
 
 export const login =
-    ({ payload, redirect }) =>
+    ({ payload, redirect, setError }) =>
     async (dispatch) => {
         const { email, password } = payload;
         dispatch(authRequested());
         try {
-            const data = await authService.login({ email, password });
+            const data = await authService.login({ email, password, setError });
             localStorageService.setTokens(data);
+            const isAdmin = data.roles.findIndex((r) => r === 'admin');
+            Number(isAdmin) === -1 ? localStorageService.setRole('user') : localStorageService.setRole('admin');
             dispatch(authRequestSuccess({ userId: data.userId }));
             history.push(redirect);
         } catch (error) {
-            dispatch(authRequestFailed(error.response.data.message));
+            setError('apiError', { message: 'Ошибка входа в систему' });
+            dispatch(authRequestFailed(error.message));
         }
     };
 
@@ -143,5 +144,9 @@ export const getUserById = (userId) => (state) => {
         return state.users.entities.find((u) => u._id === userId);
     }
 };
+export const getAuthError = () => (state) => state.users.error;
+export const getAdminRole = () => (state) => state.users.auth.userRole === 'admin';
+export const getUsersLoadingStatus = () => (state) => state.users.isLoading;
+export const getUsersDataStatus = () => (state) => state.users.dataLoaded;
 
 export default usersReducer;
