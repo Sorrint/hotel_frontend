@@ -56,27 +56,46 @@
     height: 70px;
     width: 100%;
     display: grid;
-    grid-template-columns: 250px 150px 180px 150px 150px;
-
+    grid-column-gap: 10px;
+    grid-template-columns: repeat(6, 1fr);
+    justify-content: center;
+    align-items: center;
     &__calendar {
-        padding: 10px;
-        border-radius: 5px;
-        border: 1px solid #3ac4fa;
         display: flex;
-        border-radius: 1px solid black;
+    }
+    &__calendar {
+        padding: 0 10px;
+        display: flex;
         align-items: center;
         justify-content: center;
-        width: 200px;
-        height: 50px;
-        background-color: #fff;
-        opacity: 100%;
     }
+}
+
+.datepicker {
+    padding: 15px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid $mainColor;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.react-datepicker {
+    align-self: center;
+    justify-self: center;
+    &__wrapper {
+        align-self: center;
+        display: flex;
+    }
+}
+
+.input-calendar {
+    text-align: center;
 }
 
 .counter {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-
     width: 120px;
     height: 50px;
     border-radius: 5px;

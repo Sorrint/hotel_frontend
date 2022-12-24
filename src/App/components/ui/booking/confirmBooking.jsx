@@ -8,7 +8,7 @@ import RecordRow from './bookingRecord/recordRow';
 import { useSelector } from 'react-redux';
 import { getRoomById } from '../../../store/rooms';
 
-const ConfirmBookingDialog = ({ data, onCancel, onConfirm }) => {
+const ConfirmBookingDialog = ({ data, onCancel, onConfirm, setRef }) => {
     const room = useSelector(getRoomById(data.choosenNumber));
     const recordFields = {
         roomTitle: {
@@ -33,9 +33,8 @@ const ConfirmBookingDialog = ({ data, onCancel, onConfirm }) => {
         },
         cost: { name: 'Стоимость бронирования', component: (record) => <RenderPrice cost={record.price} /> }
     };
-    console.log(data);
     return (
-        <div className="popup__booking">
+        <div className="popup__booking" ref={setRef}>
             <div className="popup__booking-title">Информация о бронировании</div>
             <div className="popup__booking-card">
                 {Object.keys(recordFields).map((field) => (
@@ -43,7 +42,7 @@ const ConfirmBookingDialog = ({ data, onCancel, onConfirm }) => {
                 ))}
             </div>
             <div className="popup__button-group">
-                <button className="confirm-button" onClick={onConfirm}>
+                <button className="confirm-button" role="button" onClick={() => onConfirm(data)}>
                     Подтвердить
                 </button>
                 <button className="cancel-button" onClick={onCancel}>
@@ -57,6 +56,7 @@ const ConfirmBookingDialog = ({ data, onCancel, onConfirm }) => {
 ConfirmBookingDialog.propTypes = {
     data: PropTypes.object,
     onCancel: PropTypes.func,
-    onConfirm: PropTypes.func
+    onConfirm: PropTypes.func,
+    setRef: PropTypes.func
 };
 export default ConfirmBookingDialog;

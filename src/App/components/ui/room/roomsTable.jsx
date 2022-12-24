@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import RoomType from '../../common/room/roomType';
 import Table from '../../common/table/table';
-import { getRooms } from '../../../store/rooms';
 
 import { renderGuests } from '../../../utils/utils';
 import SelectField from '../../common/form/selectField';
@@ -11,13 +10,9 @@ import RoomStatus from '../../common/room/roomStatus';
 import RoomEditIcon from '../../common/room/roomEditIcon';
 import _ from 'lodash';
 import { getRoomTypeById } from '../../../store/roomTypes';
-import { getCurrentUserId } from '../../../store/users';
+import Loader from '../../common/portal/loader';
 
-const RoomsTable = ({ onSelect }) => {
-    const currentUserId = useSelector(getCurrentUserId());
-    const rooms = useSelector(getRooms());
-    const [sortBy, setSortBy] = useState({ path: 'bookingNumber', order: 'asc' });
-
+const RoomsTable = ({ onSelect, rooms, sortBy, setSortBy, currentUserId }) => {
     const handleSort = (item) => {
         setSortBy(item);
     };
@@ -92,11 +87,15 @@ const RoomsTable = ({ onSelect }) => {
             )
         );
     }
-    return 'loading...';
+    return <Loader />;
 };
 
 RoomsTable.propTypes = {
-    onSelect: PropTypes.func
+    onSelect: PropTypes.func,
+    rooms: PropTypes.array,
+    sortBy: PropTypes.object,
+    setSortBy: PropTypes.func,
+    currentUserId: PropTypes.string
 };
 
 export default RoomsTable;

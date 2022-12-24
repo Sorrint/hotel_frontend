@@ -1,21 +1,15 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
 import PropTypes from 'prop-types';
 import RenderPrice from '../../common/booking/bookingFields/price';
 import Table from '../../common/table/table';
-import { getRooms } from '../../../store/rooms';
-import { getUsersList } from '../../../store/users';
+import { updateRoomInfo } from '../../../store/rooms';
 import BookingDate from './bookingDate';
 import RenderGuests from '../../common/booking/bookingFields/guests';
 import RenderNights from '../../common/booking/bookingFields/nights';
 import _ from 'lodash';
+import { removeBooking } from '../../../store/bookings';
 
-const BookingsTable = ({ bookings }) => {
-    const users = useSelector(getUsersList());
-    const rooms = useSelector(getRooms());
-
-    const [sortBy, setSortBy] = useState({ path: 'bookingNumber', order: 'asc' });
-
+const BookingsTable = ({ bookings, sortBy, setSortBy, users, rooms, dispatch }) => {
     const handleSort = (item) => {
         setSortBy(item);
     };
@@ -41,8 +35,16 @@ const BookingsTable = ({ bookings }) => {
             const choosenNumber = getRoomName(booking.choosenNumber);
             const arrivalDate = booking.bookingRange[0];
             const departureDate = booking.bookingRange[1];
-            return { ...booking, user, choosenNumber, arrivalDate, departureDate };
+            return { ...booking, user, choosenNumberTitle: choosenNumber, arrivalDate, departureDate };
         });
+
+    const handleBookingRemove = (bookingId, roomId) => {
+        const room = rooms.find((r) => r._id === roomId);
+        const updatedBookings = room.booking.filter((b) => b._id !== bookingId);
+        const updatedRoom = { ...room, booking: updatedBookings };
+        dispatch(removeBooking(bookingId));
+        dispatch(updateRoomInfo(updatedRoom));
+    };
 
     const bookingData = transformData(bookings);
     const sortedBookings = _.orderBy(bookingData, [sortBy.path], [sortBy.order]);
@@ -50,7 +52,7 @@ const BookingsTable = ({ bookings }) => {
     const columns = {
         bookingNumber: { name: 'Номер брони', path: 'bookingNumber' },
         client: { name: 'Клиент', path: 'user' },
-        room: { name: 'Комната', path: 'choosenNumber' },
+        room: { name: 'Комната', path: 'choosenNumberTitle' },
 
         arrivalDate: {
             name: 'Дата заезда',
@@ -70,7 +72,13 @@ const BookingsTable = ({ bookings }) => {
                 </>
             )
         },
-        price: { name: 'Стоимость', component: ({ price }) => <RenderPrice cost={price} /> }
+        price: { name: 'Стоимость', component: ({ price }) => <RenderPrice cost={price} /> },
+        delete: {
+            name: '',
+            component: ({ _id, choosenNumber }) => (
+                <button className="remove-button" onClick={() => handleBookingRemove(_id, choosenNumber)}></button>
+            )
+        }
     };
     return (
         bookings && (
@@ -88,7 +96,12 @@ const BookingsTable = ({ bookings }) => {
 BookingsTable.propTypes = {
     bookings: PropTypes.array,
     onSort: PropTypes.func,
-    selectedSort: PropTypes.object
+    selectedSort: PropTypes.object,
+    sortBy: PropTypes.object,
+    setSortBy: PropTypes.func,
+    users: PropTypes.array,
+    rooms: PropTypes.array,
+    dispatch: PropTypes.func
 };
 
 export default BookingsTable;

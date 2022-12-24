@@ -21,7 +21,7 @@ export const ClickOutside = ({ children, reference, onClickOutside }) => {
                 return;
             }
 
-            if (isClickedOutside(reference.current, event.target)) {
+            if (isClickedOutside(reference, event.target)) {
                 onClickOutside();
             }
         },

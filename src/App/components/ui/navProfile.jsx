@@ -1,34 +1,32 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { getCurrentUserData } from '../../store/users';
-
+import Popover from '../common/portal/popover';
+import DropDownMenu from './dropDownMenu';
 const NavProfile = () => {
     const currentUser = useSelector(getCurrentUserData());
+    const [referenceElement, setReferenceElement] = useState(null);
+    const [, setPopperElement] = useState(null);
     const [isOpen, setOpen] = useState(false);
     const toggleMenu = () => {
         setOpen((prevState) => !prevState);
     };
+
     if (!currentUser) return 'Loading...';
     return (
-        <div className="dropdown">
-            <div className="dropdown__profile" onClick={toggleMenu}>
-                <div className="dropdown__name">{currentUser.username}</div>
-                <img src={currentUser.avatar} className="dropdown__avatar" alt="" height="40" />
+        <>
+            <div className="dropdown">
+                <div className="dropdown__profile" onClick={toggleMenu} ref={setReferenceElement}>
+                    <div className="dropdown__name">{currentUser.username}</div>
+                    <img src={currentUser.avatar} className="dropdown__avatar" alt="" height="40" />
+                </div>
             </div>
             {isOpen && (
-                <div className="dropdown__wrapper">
-                    <div className="dropdown__menu">
-                        <div className="dropdown__item">
-                            <Link to={`/users/${currentUser._id}/profile`}>Profile</Link>
-                        </div>
-                        <div className="dropdown__item">
-                            <Link to="/logout">Log out</Link>
-                        </div>
-                    </div>
-                </div>
+                <Popover reference={referenceElement} onClose={toggleMenu}>
+                    <DropDownMenu setPopper={setPopperElement} currentUser={currentUser} />
+                </Popover>
             )}
-        </div>
+        </>
     );
 };
 

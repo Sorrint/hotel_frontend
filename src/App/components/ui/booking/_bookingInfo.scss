@@ -4,25 +4,6 @@
     border-bottom: 1px solid $borderColor;
     font-size: 20px;
 
-    // &__button {
-    //     font-size: 20px;
-    //     margin-left: 15px;
-    //     height: 48px;
-    //     border: 2px solid $borderColor;
-    //     padding: 10px;
-    //     width: 250px;
-    //     background-color: $buttonColor;
-    //     border-radius: 5px;
-    //     text-align: center;
-    // }
-    // &__button:hover {
-    //     animation-name: hover-button;
-    //     animation-duration: 0.3s;
-    //     background-color: $hoverColor;
-    //     color: #ffffff;
-    //     box-shadow: 2px 2px 5px $borderColor;
-    // }
-
     &__link {
         grid-area: "buttons";
         display: flex;

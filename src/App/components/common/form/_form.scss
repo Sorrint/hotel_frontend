@@ -1,7 +1,6 @@
 .input-container {
     display: grid;
     grid-template-columns: 2fr 6fr;
-    // grid-template-rows: auto;
     grid-auto-flow: row dense;
     grid-template-areas:
         "label input"
@@ -99,7 +98,7 @@
 
 .invalid-feedback {
     font-size: 14px;
-    grid-area: "error";
+    grid-area: error;
     grid-column-start: 2;
     grid-column-end: 3;
     width: 100%;

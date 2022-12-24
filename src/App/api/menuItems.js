@@ -28,6 +28,11 @@ export const navBarLinks = [
         name: 'contacts',
         path: '/contacts',
         text: 'Контакты'
+    },
+    {
+        name: 'reviews',
+        path: '/reviews',
+        text: 'Отзывы'
     }
 ];
 
@@ -50,5 +55,9 @@ export const sidebarLinks = [
     {
         name: 'currentBookings',
         path: '/users/userId/currentBookings'
+    },
+    {
+        name: 'review',
+        path: '/review'
     }
 ];

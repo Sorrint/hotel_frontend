@@ -2,18 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const TextAreaField = ({ label, name, error, placeholder, value, rows = 2, register }) => {
-    // const textAreaRef = useRef();
-    // console.log(value);
-    // const [currentValue, setCurrentValue] = useState();
-
-    // useEffect(() => {
-    //     setCurrentValue(value);
-    // }, []);
-    // useEffect(() => {
-    //     textAreaRef.current.style.height = '0px';
-    //     const scrollHeight = textAreaRef.current.scrollHeight;
-    //     textAreaRef.current.style.height = scrollHeight + 'px';
-    // }, []);
     const getInputClasses = () => {
         return 'input-container__input' + (error ? ' is-invalid' : '');
     };
@@ -29,8 +17,6 @@ const TextAreaField = ({ label, name, error, placeholder, value, rows = 2, regis
                 placeholder={placeholder}
                 rows={rows}
                 {...register}
-                // ref={textAreaRef}
-                // onChange={(e) => setCurrentValue(e.target.value)}
             />
             {error && <div className="invalid-feedback">{error}</div>}
         </div>

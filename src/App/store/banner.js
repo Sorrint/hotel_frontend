@@ -6,7 +6,8 @@ const bannerSlice = createSlice({
     initialState: {
         entities: null,
         error: null,
-        isLoading: true
+        isLoading: true,
+        dataLoading: false
     },
     reducers: {
         bannerRequested: (state) => {
@@ -45,4 +46,6 @@ export const getBannerByLocation = (pathname) => (state) => {
 
 export const getBannersLoadingStatus = () => (state) => state.banner.isLoading;
 export const getBanners = () => (state) => state.banner.entities;
+export const getBannerDataStatus = () => (state) => state.banner.dataLoaded;
+
 export default bannerReducer;

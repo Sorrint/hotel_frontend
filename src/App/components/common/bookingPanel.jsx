@@ -11,15 +11,29 @@ const BookingPanel = ({ onChange, data, roomTypes, control, onSubmit }) => {
     return (
         <form className="form-container__form " onSubmit={onSubmit}>
             <div className="booking-panel">
-                <div className="booking-panel__calendar">
-                    <Calendar bookingRange={bookingRange} onChange={onChange} control={control} />
-                </div>
-                <Counter name="numberOfPersons" value={numberOfPersons} onChange={onChange} min={1} max={6} />
+                <Calendar
+                    bookingRange={bookingRange}
+                    onChange={onChange}
+                    control={control}
+                    minDate={new Date()}
+                    wrapperName="booking-panel"
+                    label="Период"
+                />
+                <Counter
+                    name="numberOfPersons"
+                    value={numberOfPersons}
+                    onChange={onChange}
+                    min={1}
+                    max={6}
+                    wrapperName="booking-panel"
+                    label="Число гостей"
+                />
                 <SelectField
                     name={'roomTypes'}
                     options={roomTypes}
                     defaultOption={'Выберите класс номера'}
                     onChange={onChange}
+                    label="Категория номера"
                 />
                 <CheckBoxField name="viewOnLake" onChange={onChange} value={viewOnLake}>
                     Вид на озеро

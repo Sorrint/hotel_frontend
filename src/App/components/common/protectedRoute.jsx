@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { getCurrentUserData, getCurrentUserId, getIsLoggedIn } from '../../store/users';
+import { getAdminRole, getCurrentUserId, getIsLoggedIn } from '../../store/users';
 import { Redirect, Route } from 'react-router-dom';
 
 const ProtectedRoute = ({ component: Component, children, condition = 'isLoggedIn', pathname = '/login', ...rest }) => {
     const isLoggedIn = useSelector(getIsLoggedIn());
-    const currentUser = useSelector(getCurrentUserData());
+    const isAdmin = useSelector(getAdminRole());
     const currentUserId = useSelector(getCurrentUserId());
-    const isAdmin = currentUser?.roles.find((r) => r === 'admin');
     const conditions = { isLoggedIn, isAdmin };
     const getPathname = currentUserId ? `/users/${currentUserId}${pathname}` : pathname;
 
